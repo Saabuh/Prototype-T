@@ -1,4 +1,5 @@
 using System;
+using Prototype_S.Item;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -51,7 +52,19 @@ namespace Prototype_S
 
         public void OnDrop(PointerEventData eventData)
         {
-            throw new NotImplementedException();
+            ItemDragHandler itemDragHandler = eventData.pointerDrag.GetComponent<ItemDragHandler>();
+
+            if (itemDragHandler == null)
+            {
+                return; 
+            }
+
+            if (itemDragHandler.ItemSlotUI != null)
+            {
+                inventory.ItemContainer.Swap(itemDragHandler.ItemSlotUI.SlotIndex, SlotIndex);
+            }
+
+
         }
     }
 }
