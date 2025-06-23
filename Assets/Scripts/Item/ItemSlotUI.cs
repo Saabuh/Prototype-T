@@ -39,7 +39,6 @@ namespace Prototype_S
             EnableSlotUI(true);
 
             itemIconImage.sprite = ItemSlot.itemData.Icon;
-            Debug.Log("ItemSlot.quantity:" + ItemSlot.quantity);
             itemQuantityText.text = ItemSlot.quantity > 1 ? ItemSlot.quantity.ToString() : "";
         }
 

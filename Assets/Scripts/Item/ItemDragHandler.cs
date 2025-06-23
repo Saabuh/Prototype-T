@@ -52,10 +52,14 @@ namespace Prototype_S
                 transform.localPosition = Vector3.zero;
                 canvasGroup.blocksRaycasts = true;
 
-                if (eventData.hovered.Count == 0)
+                Debug.Log(eventData.hovered.Count);
+                foreach (var item in eventData.hovered)
                 {
-                    //drop item
+                    Debug.Log($"Pointer is over: {item.name}");
                 }
+                // if (eventData.hovered.Count == 0)
+                // {
+                // }
             }
         }
 
