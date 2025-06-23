@@ -5,7 +5,7 @@ namespace Prototype_S
     /// </summary>
     public interface IItemContainer
     {
-       void AddItem(ItemSlot itemSlot);
+       ItemSlot AddItem(ItemSlot itemSlot);
        void RemoveItem(ItemSlot itemSlot);
        void RemoveAt(int slotIndex);
        void Swap(int indexOne, int indexTwo);

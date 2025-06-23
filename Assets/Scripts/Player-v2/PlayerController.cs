@@ -8,6 +8,7 @@ namespace Prototype_S
 
         [SerializeField] private InputReader playerInput;
         [SerializeField] private Player2 player;
+        [SerializeField] private VoidEvent onCharacterAttack;
         private Rigidbody2D _playerRb;
 
         public float playerSpeed = 5.0f;
@@ -39,6 +40,7 @@ namespace Prototype_S
 
         void HandleUse(Vector2 mousePosition)
         {
+            onCharacterAttack.Raise();
             // //determine aim direction
             // Vector2 direction = (mousePosition - (Vector2)player.transform.position).normalized;
             //

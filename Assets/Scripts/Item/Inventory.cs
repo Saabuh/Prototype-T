@@ -6,7 +6,9 @@ namespace Prototype_S
     public class Inventory : ScriptableObject
     {
 
-        [SerializeField] private ItemSlot testItemSlot = new ItemSlot();
+        [SerializeField] private VoidEvent onInventoryItemsUpdated = null;
+
+        [SerializeField] private ItemSlot testItemSlot;
         public ItemContainer ItemContainer { get; } = new ItemContainer(40);
 
         [ContextMenu("Test adding ItemSlot")]
@@ -15,5 +17,15 @@ namespace Prototype_S
             ItemContainer.AddItem(testItemSlot);
         }
 
+        public void OnEnable()
+        {
+            ItemContainer.OnItemsUpdated += onInventoryItemsUpdated.Raise;
+        }
+
+        public void OnDisable()
+        {
+            
+            ItemContainer.OnItemsUpdated -= onInventoryItemsUpdated.Raise;
+        }
     }
 }

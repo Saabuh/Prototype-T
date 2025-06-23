@@ -26,11 +26,10 @@ namespace Prototype_S
         void Start()
         {
             SlotIndex = transform.GetSiblingIndex();
-            inventory.ItemContainer.OnItemsUpdated += UpdateSlotUI;
             UpdateSlotUI();
         }
 
-        private void UpdateSlotUI()
+        public void UpdateSlotUI()
         {
             if (ItemSlot.itemData == null)
             {
@@ -41,6 +40,7 @@ namespace Prototype_S
             EnableSlotUI(true);
 
             itemIconImage.sprite = ItemSlot.itemData.Icon;
+            Debug.Log("ItemSlot.quantity:" + ItemSlot.quantity);
             itemQuantityText.text = ItemSlot.quantity > 1 ? ItemSlot.quantity.ToString() : "";
         }
 

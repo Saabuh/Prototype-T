@@ -23,10 +23,10 @@ namespace Prototype_S
 
         [ContextMenu("Generate Map")]
         public void GenerateMap()
-        {
+          {
             terrainMap.ClearAllTiles();
             waterMap.ClearAllTiles();
-            
+
             //generate terrain noise map
             float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale);
 
@@ -37,7 +37,7 @@ namespace Prototype_S
                 {
                     Tilemap selectedTileMap;
                     TileBase selectedTile;
-                    
+
                     switch (noiseMap[x, y])
                     {
                         case < 0.25f:
@@ -53,28 +53,25 @@ namespace Prototype_S
                             selectedTileMap = terrainMap;
                             break;
                     }
-                    
+
                     selectedTileMap.SetTile(new Vector3Int(x, y, 0), selectedTile);
                 }
             }
-            
         }
 
         [ContextMenu("Generate Trees")]
         private void TreeGenerator()
         {
-            
             foliageMap.ClearAllTiles();
             float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, treeScale);
-            
+
             //generate trees based on noise map
             for (int y = 0; y < mapHeight; y++)
             {
                 for (int x = 0; x < mapWidth; x++)
                 {
-
                     float density = Random.Range(0.05f, treeDensity);
-                    if (!isWater(x,y) && !isSand(x,y) && noiseMap[x,y] < density)
+                    if (!isWater(x, y) && !isSand(x, y) && noiseMap[x, y] < density)
                     {
                         foliageMap.SetTile(new Vector3Int(x, y, 0), treeTile);
                     }

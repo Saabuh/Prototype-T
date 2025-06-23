@@ -10,5 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d507610bb5134f7186b59501752065f9, type: 3}
-  m_Name: Inventory_Player
+  m_Name: Player_Inventory
   m_EditorClassIdentifier: 
+  onInventoryItemsUpdated: {fileID: 11400000, guid: b18352d9f72071e91ab32c2ce0eb2777, type: 2}
+  testItemSlot:
+    itemData: {fileID: 11400000, guid: f8e30d267382eec9199e1712961e1143, type: 2}
+    quantity: 2
