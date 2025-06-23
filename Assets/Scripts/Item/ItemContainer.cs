@@ -5,27 +5,27 @@ namespace Prototype_S
 {
     public class ItemContainer : IItemContainer
     {
-        private ItemSlot[] _itemSlots;
+        private ItemSlot[] itemSlots;
 
-        public ItemContainer(int size) => _itemSlots = new ItemSlot[size];
+        public ItemContainer(int size) => itemSlots = new ItemSlot[size];
 
         public Action OnItemsUpdated = delegate { };
         
-        public ItemSlot GetSlotByIndex(int index) => _itemSlots[index];
+        public ItemSlot GetSlotByIndex(int index) => itemSlots[index];
 
         public ItemSlot AddItem(ItemSlot itemSlot)
         {
-            for (int i = 0; i < _itemSlots.Length; i++)
+            for (int i = 0; i < itemSlots.Length; i++)
             {
-                if (_itemSlots[i].itemData != null)
+                if (itemSlots[i].itemData != null)
                 {
-                    if (_itemSlots[i].itemData == itemSlot.itemData)
+                    if (itemSlots[i].itemData == itemSlot.itemData)
                     {
-                        int slotRemainingSpace = _itemSlots[i].itemData.MaxStack - _itemSlots[i].quantity;
+                        int slotRemainingSpace = itemSlots[i].itemData.MaxStack - itemSlots[i].quantity;
 
                         if (itemSlot.quantity <= slotRemainingSpace)
                         {
-                            _itemSlots[i].quantity += itemSlot.quantity;
+                            itemSlots[i].quantity += itemSlot.quantity;
 
                             itemSlot.quantity = 0;
 
@@ -35,7 +35,7 @@ namespace Prototype_S
                         }
                         else if (slotRemainingSpace > 0)
                         {
-                            _itemSlots[i].quantity += slotRemainingSpace;
+                            itemSlots[i].quantity += slotRemainingSpace;
 
                             itemSlot.quantity -= slotRemainingSpace;
                         }
@@ -43,13 +43,13 @@ namespace Prototype_S
                 }
             }
 
-            for (int i = 0; i < _itemSlots.Length; i++)
+            for (int i = 0; i < itemSlots.Length; i++)
             {
-                if (_itemSlots[i].itemData == null)
+                if (itemSlots[i].itemData == null)
                 {
                     if (itemSlot.quantity <= itemSlot.itemData.MaxStack)
                     {
-                        _itemSlots[i] = itemSlot;
+                        itemSlots[i] = itemSlot;
 
                         itemSlot.quantity = 0;
 
@@ -59,7 +59,7 @@ namespace Prototype_S
                     }
                     else
                     {
-                        _itemSlots[i] = new ItemSlot(itemSlot.itemData, itemSlot.itemData.MaxStack);
+                        itemSlots[i] = new ItemSlot(itemSlot.itemData, itemSlot.itemData.MaxStack);
 
                         itemSlot.quantity -= itemSlot.itemData.MaxStack;
                     }
@@ -83,12 +83,39 @@ namespace Prototype_S
 
         public void Swap(int indexOne, int indexTwo)
         {
-            throw new System.NotImplementedException();
+            ItemSlot firstSlot = itemSlots[indexOne];
+            ItemSlot secondSlot = itemSlots[indexTwo];
+
+            if (firstSlot == secondSlot) { return; }
+
+            if (secondSlot.itemData != null)
+            {
+                if (firstSlot.itemData == secondSlot.itemData)
+                {
+                    int secondSlotRemainingSpace = secondSlot.itemData.MaxStack - secondSlot.quantity;
+
+                    if (firstSlot.quantity <= secondSlotRemainingSpace)
+                    {
+                        itemSlots[indexTwo].quantity += firstSlot.quantity;
+
+                        itemSlots[indexOne] = new ItemSlot();
+
+                        OnItemsUpdated.Invoke();
+
+                        return;
+                    }
+                }
+            }
+
+            itemSlots[indexOne] = secondSlot;
+            itemSlots[indexTwo] = firstSlot;
+
+            OnItemsUpdated.Invoke();
         }
 
         public bool HasItem(ItemData item)
         {
-            foreach (ItemSlot itemSlot in _itemSlots)
+            foreach (ItemSlot itemSlot in itemSlots)
             {
                 if (itemSlot.itemData == item)
                 {
@@ -102,7 +129,7 @@ namespace Prototype_S
         {
             int totalQuantity = 0;
 
-            foreach (ItemSlot itemSlot in _itemSlots)
+            foreach (ItemSlot itemSlot in itemSlots)
             {
                 if (itemSlot.itemData == item)
                 {
