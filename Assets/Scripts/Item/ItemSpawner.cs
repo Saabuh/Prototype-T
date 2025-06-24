@@ -13,7 +13,7 @@ namespace Prototype_S
             _worldItemPrefab = prefab;
         }
 
-        private static void SpawnItem(Vector3 position, ItemData item ,Quaternion rotation)
+        public static void SpawnItem(Vector3 position, ItemData item , int quantity)
         {
             
              // --- Safety Checks ---
@@ -27,7 +27,16 @@ namespace Prototype_S
                 Debug.LogWarning("Tried to spawn an item with null ItemData.");
             }
 
-            GameObject itemObject = Object.Instantiate(_worldItemPrefab, position, rotation);
+            //instantiate a blank canvas, a empty world item prefab
+            GameObject itemObject = Object.Instantiate(_worldItemPrefab, position, Quaternion.identity);
+            
+            //grab components
+            ItemEntity itemEntity = itemObject.GetComponent<ItemEntity>();
+            SpriteRenderer spriteRenderer = itemObject.GetComponent<SpriteRenderer>();
+            
+            //populate prefab
+            itemEntity.Initialize(item, quantity);
+            spriteRenderer.sprite = item.Icon;
 
         }
 

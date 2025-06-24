@@ -16,6 +16,7 @@ namespace Prototype_S
        public Sprite Icon => icon;
        public int SellPrice => sellPrice;
        public int MaxStack => maxStack;
+       public int  Quantity => quantity;
 
        public abstract string GetItemDisplayText();
    }

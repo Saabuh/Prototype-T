@@ -5,6 +5,7 @@ namespace Prototype_S
 {
     public class PlayerController : MonoBehaviour
     {
+        public static PlayerController Instance { get; private set; }
 
         [SerializeField] private InputReader playerInput;
         [SerializeField] private Player2 player;
@@ -12,6 +13,19 @@ namespace Prototype_S
         private Rigidbody2D _playerRb;
 
         public float playerSpeed = 5.0f;
+
+        void Awake()
+        {
+            // Singleton pattern: Ensure only one instance exists
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this.gameObject);
+                return; 
+            }
+            
+            Instance = this;
+            
+        }
 
         void Start()
         {
