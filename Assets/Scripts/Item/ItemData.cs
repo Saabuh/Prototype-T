@@ -8,6 +8,7 @@ namespace Prototype_S
        [SerializeField] private new string name = "New Item Name";
        [SerializeField] private Sprite icon = null;
        [SerializeField] private int sellPrice = 0;
+       [SerializeField] private int quantity = 1;
        [SerializeField] private int maxStack = 1;
        
        //getters

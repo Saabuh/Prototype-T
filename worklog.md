@@ -7,9 +7,17 @@ really like the "f*ck it up all the way and then do it for real" approach to cre
 100% agree: I code like I write my music. I dont sit and make notes on paper, I sit at the synth and tinker, make some sounds, 
 twiddle knobs, play some chords, feel the music, keep it or trash it, get feedback and iterate. totally get your jam. im with you.
 
+## Bugs
+- [ ] dropping items between inventory slots causes multiple raycasts hits(?)
+
+## 23-06-2025
+- [x] finish itemcontainer logic
+- [ ] add drop system / world entity
+- [ ] add item tooltip ui
+
 ## 23-06-2025
 - [x] adding inventory visuals/ui
-- [ ] finish itemcontainer logic
+- [x] finish itemcontainer logic
 
 ## 21-06-2025
 - [ ] "Research" (play) these games:
