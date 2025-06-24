@@ -6,10 +6,10 @@ namespace Prototype_S
 {
     public class ItemDragHandler : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] protected ItemSlotUI itemSlotUI = null;
-        private CanvasGroup canvasGroup = null;
-        private Transform originalParent = null;
-        private bool isHovering = false;
+        [SerializeField] protected ItemSlotUI itemSlotUI;
+        private CanvasGroup canvasGroup;
+        private Transform originalParent;
+        private bool isHovering;
 
         private void Start()
         {
@@ -53,13 +53,11 @@ namespace Prototype_S
                 canvasGroup.blocksRaycasts = true;
 
                 Debug.Log(eventData.hovered.Count);
-                foreach (var item in eventData.hovered)
+                
+                if (eventData.hovered.Count == 0)
                 {
-                    Debug.Log($"Pointer is over: {item.name}");
+                    itemSlotUI.Inventory.RemoveAt(itemSlotUI.SlotIndex);
                 }
-                // if (eventData.hovered.Count == 0)
-                // {
-                // }
             }
         }
 

@@ -19,8 +19,10 @@ namespace Prototype_S
         [SerializeField] private Image itemIconImage = null;
         
         //properties
-        private int SlotIndex { get; set; }
+        public int SlotIndex { get; private set; }
         public ItemSlot ItemSlot => inventory.ItemContainer.GetSlotByIndex(SlotIndex);
+
+        public ItemContainer Inventory => inventory.ItemContainer;
 
         void Start()
         {

@@ -78,7 +78,9 @@ namespace Prototype_S
 
         public void RemoveAt(int slotIndex)
         {
-            throw new System.NotImplementedException();
+            itemSlots[slotIndex] = new ItemSlot();
+            
+            OnItemsUpdated.Invoke();
         }
 
         public void Swap(int indexOne, int indexTwo)
