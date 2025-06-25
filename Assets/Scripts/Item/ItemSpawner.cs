@@ -13,7 +13,7 @@ namespace Prototype_S
             _worldItemPrefab = prefab;
         }
 
-        public static void SpawnItem(Vector3 position, ItemData item , int quantity)
+        public static void SpawnItem(Vector3 position, ItemData item , int quantity, float pickupDelay = 1f)
         {
             
              // --- Safety Checks ---
@@ -35,7 +35,7 @@ namespace Prototype_S
             SpriteRenderer spriteRenderer = itemObject.GetComponent<SpriteRenderer>();
             
             //populate prefab
-            itemEntity.Initialize(item, quantity);
+            itemEntity.Initialize(item, quantity, pickupDelay);
             spriteRenderer.sprite = item.Icon;
 
         }

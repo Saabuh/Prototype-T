@@ -3,41 +3,62 @@ using UnityEngine;
 
 namespace Prototype_S
 {
+    /**
+     * Responsible for managing anything involving player/user interaction (mouse clicks, movement, etc.)
+     */
     public class PlayerController : MonoBehaviour
     {
-        public static PlayerController Instance { get; private set; }
-
-        [SerializeField] private InputReader playerInput;
-        [SerializeField] private Player2 player;
+        public static PlayerController LocalPlayerInstance { get; private set; }
+        // This boolean would be set by your networking system (e.g., Mirror, Netcode).
+        // For testing, you can set it manually in the Inspector.
+        [Tooltip("Is this the player controlled by this computer?")]
+        public bool isLocalPlayer = true;
+        
+        //events
         [SerializeField] private VoidEvent onCharacterAttack;
-        private Rigidbody2D _playerRb;
 
+        //facade properties
+        [SerializeField] private Inventory inventory;
+        private InputReader playerInput;
+        private PlayerInteraction interactor;
+        private Rigidbody2D playerRb;
+        
+        //getter properties
+        public Inventory Inventory => inventory;
+        
         public float playerSpeed = 5.0f;
 
         void Awake()
         {
-            // Singleton pattern: Ensure only one instance exists
-            if (Instance != null && Instance != this)
+
+            //check if the player we are trying to create is the one we should control
+            if (isLocalPlayer)
             {
-                Destroy(this.gameObject);
-                return; 
+
+                //check if an instance of the player we are to control already exists
+                if (LocalPlayerInstance != null)
+                {
+                    Destroy(this.gameObject);
+                    return;
+                }
+                
+                LocalPlayerInstance = this;
             }
             
-            Instance = this;
-            
+            //initialize facade references
+            playerInput = GetComponent<InputReader>();
+            playerRb = GetComponent<Rigidbody2D>();
         }
 
         void Start()
         {
-            //initialize any necessary components
-            playerInput = GetComponent<InputReader>();
-            player = GetComponent<Player2>();
-            _playerRb = GetComponent<Rigidbody2D>();
             
             //subscribe functions to events
             playerInput.OnFire += HandleUse;
 
         }
+        
+        
 
         void Update()
         {
@@ -48,7 +69,7 @@ namespace Prototype_S
         {
             Vector2 movement = new Vector2(playerInput.Horizontal, playerInput.Vertical);
 
-            _playerRb.linearVelocity = movement * playerSpeed;
+            playerRb.linearVelocity = movement * playerSpeed;
             // transform.Translate(movement * (playerSpeed * Time.deltaTime));
         }
 

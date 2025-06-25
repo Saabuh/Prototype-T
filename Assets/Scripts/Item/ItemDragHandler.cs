@@ -52,12 +52,11 @@ namespace Prototype_S
                 transform.localPosition = Vector3.zero;
                 canvasGroup.blocksRaycasts = true;
 
-                // Debug.Log(eventData.hovered.Count);
                 
                 //drop the item if its released outside of a canvas graphic
                 if (eventData.hovered.Count == 0)
                 {
-                    ItemSpawner.SpawnItem(PlayerController.Instance.transform.position, itemSlotUI.ItemSlot.itemData, itemSlotUI.ItemSlot.quantity);
+                    ItemSpawner.SpawnItem(PlayerController.LocalPlayerInstance.transform.position, itemSlotUI.ItemSlot.itemData, itemSlotUI.ItemSlot.quantity);
                     
                     // Reset item slot after spawning creating item entity
                     itemSlotUI.Inventory.RemoveAt(itemSlotUI.SlotIndex);
