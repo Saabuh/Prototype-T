@@ -25,3 +25,5 @@ public event Action<Vector2> OnFire = delegate { };
 this line basically says:
 create a delegate that holds methods that have a single Vector2 parameter.
 delegate { }; just means to add a empty, void method to the delegate to prevent null check errors.
+
+the inventory still has reference to the item in the itemslot, because when i drag the icon, i am just dragging an ItemIcon with that still references the same item slot

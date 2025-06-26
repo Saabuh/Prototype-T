@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Prototype_S
+namespace Prototype_S.UI
 {
     public class ItemDragHandler : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
     {
@@ -16,7 +15,7 @@ namespace Prototype_S
             canvasGroup = GetComponent<CanvasGroup>();
         }
 
-        private void onDisable()
+        private void OnDisable()
         {
             if (isHovering)
             {
@@ -56,7 +55,7 @@ namespace Prototype_S
 
                 Debug.Log(eventData.hovered.Count);
                 
-                //drop the item if its released outside of a canvas graphic
+                //drop the item if it's released outside a canvas graphic
                 if (eventData.hovered.Count == 0)
                 {
                     ItemSpawner.SpawnItem(PlayerController.LocalPlayerInstance.transform.position, itemSlotUI.ItemSlot.itemData, itemSlotUI.ItemSlot.quantity);

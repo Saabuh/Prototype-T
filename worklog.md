@@ -12,7 +12,14 @@ twiddle knobs, play some chords, feel the music, keep it or trash it, get feedba
 - [ ] adding inventory items doesnt handle full inventories properly (pass by reference as a solution? method overload for 2 versionf of AddItem if we care/dont care about remainder)
 - [ ] considering moving the inputReader script onto a seperate InputReader object. reasoning is that we are attaching the UIManager to an instance of the inputReader component on the player. If the player dies (gameObject deleted),
 so does the input reader temporarily.
-- [ ] dragging an item and then closing the ui bugs out, item freezes on current mouse position on next inventory toggle
+- [x] [dragging an item and then closing the ui bugs out, item freezes on current mouse position on next inventory toggle](https://github.com/Saabuh/Prototype-T/issues/1)
+- [x] dragging an item out of the inventory, closing the inventory, dropping the item, then opening back up the inventory shows the item still there, while the item is on the ground
+
+## 26-06-2025
+- [x] [Visual duplicate item bug with inventory toggling](https://github.com/Saabuh/Prototype-T/issues/2)
+- [x] [dragging an item and then closing the ui bugs out](https://github.com/Saabuh/Prototype-T/issues/1)
+- [ ] change dragging out of inventory into click and click again to drop
+- [ ] add item tooltip ui
 
 ## 25-06-2025
 - [x] add pickup to world entities
@@ -34,7 +41,7 @@ so does the input reader temporarily.
 - [x] finish itemcontainer logic
 
 ## 21-06-2025
-- [ ] "Research" (play) these games:
+- [ ] try out these games:
     - [ ] Necesse
     - [ ] Tinkerlands
     - [ ] Fields of Mistra
