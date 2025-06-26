@@ -30,8 +30,9 @@ namespace Prototype_S
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
+                
                 originalParent = transform.parent;
-                transform.SetParent(transform.parent.parent);
+                transform.SetParent(DragCanvas.Instance.transform);
                 canvasGroup.blocksRaycasts = false;
             }
         }
@@ -53,6 +54,7 @@ namespace Prototype_S
                 transform.localPosition = Vector3.zero;
                 canvasGroup.blocksRaycasts = true;
 
+                Debug.Log(eventData.hovered.Count);
                 
                 //drop the item if its released outside of a canvas graphic
                 if (eventData.hovered.Count == 0)
@@ -61,6 +63,7 @@ namespace Prototype_S
                     
                     // Reset item slot after spawning creating item entity
                     itemSlotUI.Inventory.RemoveAt(itemSlotUI.SlotIndex);
+                    
                 }
             }
         }

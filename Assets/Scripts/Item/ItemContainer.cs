@@ -79,7 +79,6 @@ namespace Prototype_S
         public void RemoveAt(int slotIndex)
         {
             itemSlots[slotIndex] = new ItemSlot();
-            
             OnItemsUpdated.Invoke();
         }
 

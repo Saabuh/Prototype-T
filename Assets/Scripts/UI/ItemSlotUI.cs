@@ -32,6 +32,8 @@ namespace Prototype_S
 
         public void UpdateSlotUI()
         {
+            
+            Debug.Log("updating slot ui....");
             if (ItemSlot.itemData == null)
             {
                 EnableSlotUI(false);
@@ -48,6 +50,11 @@ namespace Prototype_S
         {
             itemIconImage.enabled = enable;
             itemQuantityText.enabled = enable;
+        }
+
+        private void OnEnable()
+        {
+            UpdateSlotUI();
         }
 
         public void OnDrop(PointerEventData eventData)

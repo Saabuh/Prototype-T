@@ -21,7 +21,6 @@ namespace Prototype_S
 
         private void ToggleInventory()
         {
-            Debug.Log("Inventory UI has been toggled.");
             inventoryPanel.SetActive(!inventoryPanel.activeSelf);
         }
     }

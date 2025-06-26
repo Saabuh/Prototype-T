@@ -24,7 +24,6 @@ namespace Prototype_S
 
         public void OnDisable()
         {
-            
             ItemContainer.OnItemsUpdated -= onInventoryItemsUpdated.Raise;
         }
     }

@@ -44,7 +44,7 @@ namespace Prototype_S
                 
                 Destroy(this.gameObject);
                 
-                Debug.Log("item was picked up and destroyed");
+                // Debug.Log("item was picked up and destroyed");
 
             }
             
