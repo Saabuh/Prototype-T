@@ -15,14 +15,6 @@ namespace Prototype_S.UI
             canvasGroup = GetComponent<CanvasGroup>();
         }
 
-        private void OnDisable()
-        {
-            if (isHovering)
-            {
-                isHovering = false;
-            }
-        }
-
         public ItemSlotUI ItemSlotUI => itemSlotUI;
         
         public void OnPointerDown(PointerEventData eventData)
