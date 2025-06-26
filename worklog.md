@@ -9,12 +9,22 @@ twiddle knobs, play some chords, feel the music, keep it or trash it, get feedba
 
 ## Bugs
 - [ ] dropping items between inventory slots causes multiple raycasts hits(?)
+- [ ] adding inventory items doesnt handle full inventories properly (pass by reference as a solution? method overload for 2 versionf of AddItem if we care/dont care about remainder)
+- [ ] considering moving the inputReader script onto a seperate InputReader object. reasoning is that we are attaching the UIManager to an instance of the inputReader component on the player. If the player dies (gameObject deleted),
+so does the input reader temporarily.
+- [ ] dragging an item and then closing the ui bugs out, item freezes on current mouse position on next inventory toggle
+
+## 25-06-2025
+- [x] add pickup to world entities
+- [ ] add item tooltip ui
+- [x] add toggling inventory ui
+- [ ] change dragging out of inventory into click and click again to drop
+- [x] remove singleton from PlayerController
+    - this was instead modified to handle multiplayer players. Will add a PlayerManager later on. 
 
 ## 24-06-2025
-- [ ] add pickup to world entities
 - [x] add basic drop system
 - [x] add item template prefab
-- [ ] add item tooltip ui
 
 ## 23-06-2025
 - [x] finish itemcontainer logic
