@@ -35,6 +35,7 @@ namespace Prototype_S
                 canvasGroup.blocksRaycasts = false;
             }
         }
+        
 
         public void OnDrag(PointerEventData eventData)
         {

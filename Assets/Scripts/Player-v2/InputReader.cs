@@ -10,7 +10,9 @@ namespace Prototype_S
         public float Vertical { get; private set; }
 
         public event Action<Vector2> OnFire = delegate { };
-        
+        public event Action OnInventoryToggle = delegate { };
+
+
         // Update is called once per frame
         void Update()
         {
@@ -20,6 +22,11 @@ namespace Prototype_S
             if (Input.GetButtonDown("Fire1"))
             {
                Fire(); 
+            }
+
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                OnInventoryToggle.Invoke();
             }
         }
 
