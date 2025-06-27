@@ -6,7 +6,7 @@ namespace Prototype_S.UI
     /// <summary>
     /// Manages the internal state of a single ItemIcon
     /// </summary>
-    public class ItemDragHandler : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IDraggableItem
+    public class ItemIconHandler : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IDraggableItem
     {
         [SerializeField] protected ItemSlotUI itemSlotUI;
         private CanvasGroup canvasGroup;

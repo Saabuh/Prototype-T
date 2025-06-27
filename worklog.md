@@ -19,7 +19,7 @@ so does the input reader temporarily.
 # TODO List
 
 ## 27-06-2025
-- [ ] improve DragStateManager's Update() logic for holding detection
+- [ ] improve DragStateManager's Update() logic for holding detection, setting isHolding to true in update is prone to bugs
 - [ ] change dragging out of inventory into click and click again to drop
 - [ ] add item tooltip ui
 

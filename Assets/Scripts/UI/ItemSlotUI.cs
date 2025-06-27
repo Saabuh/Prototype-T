@@ -57,23 +57,6 @@ namespace Prototype_S
             UpdateSlotUI();
         }
 
-        // public void OnDrop(PointerEventData eventData)
-        // {
-        //     ItemDragHandler itemDragHandler = eventData.pointerDrag.GetComponent<ItemDragHandler>();
-        //
-        //     if (itemDragHandler == null)
-        //     {
-        //         return; 
-        //     }
-        //
-        //     if (itemDragHandler.ItemSlotUI != null)
-        //     {
-        //         inventory.ItemContainer.Swap(itemDragHandler.ItemSlotUI.SlotIndex, SlotIndex);
-        //     }
-        //
-        //
-        // }
-
         public void OnDrop(IDraggableItem item)
         {
             if (item == null)

@@ -7,6 +7,10 @@ namespace Prototype_S
     public interface IDropTarget
     {
 
+        /// <summary>
+        /// handles behaviour for when an IDraggableItem is dropped on it
+        /// </summary>
+        /// <param name="item">item dropped</param>
         void OnDrop(IDraggableItem item);
 
     }

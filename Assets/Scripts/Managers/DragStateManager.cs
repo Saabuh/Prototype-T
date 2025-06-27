@@ -85,6 +85,7 @@ namespace Prototype_S
                 heldItem.OnRelease(false);
             }
 
+            //reset the dragStateManager
             heldItem = null;
             isHolding = false;
 
