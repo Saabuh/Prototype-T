@@ -17,10 +17,6 @@ namespace Prototype_S.UI
         public Transform Transform => transform;
         public ItemSlotUI ItemSlotUI => itemSlotUI;
         
-        private void Start()
-        {
-            canvasGroup = GetComponent<CanvasGroup>();
-        }
         
         public void OnPointerDown(PointerEventData eventData)
         {
@@ -28,6 +24,11 @@ namespace Prototype_S.UI
             {
                 OnPickup();
             }
+        }
+        
+        private void Start()
+        {
+            canvasGroup = GetComponent<CanvasGroup>();
         }
 
         public void OnPickup()
