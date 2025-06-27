@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Prototype_S
 {
@@ -7,7 +9,7 @@ namespace Prototype_S
     {
         
         public static DragStateManager Instance { get; private set; }
-        private IDraggable heldItem = null;
+        private IDraggableItem heldItem = null;
         private bool isHolding = false;
         private Transform originalParent;
         private CanvasGroup canvasGroup;
@@ -27,18 +29,18 @@ namespace Prototype_S
             if (heldItem != null)
             {
                 heldItem.Transform.position = Input.mousePosition;
-
+            
                 if (Input.GetMouseButtonDown(0) && isHolding)
                 {
-                    DropItem();
+                    Release();
                 }
-
+                
                 isHolding = true;
-
+            
             }
         }
         
-        public bool HoldItem(IDraggable item) 
+        public bool HoldItem(IDraggableItem item) 
         {
             //already holding an item
             if (heldItem != null)
@@ -47,12 +49,45 @@ namespace Prototype_S
             }
             
             heldItem = item;
+            isHolding = false;
+            
             return true;
         }
 
-        private void DropItem()
+        /// <summary>
+        /// Releases the currently dragged entity.
+        /// </summary>
+        private void Release()
         {
-            heldItem.OnDrop();
+            
+            //build pointer event data
+            PointerEventData pointerData = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, results);
+
+            IDropTarget dropTarget = null;
+
+            //look for any drop targets
+            foreach (var result in results)
+            {
+                dropTarget = result.gameObject.GetComponent<IDropTarget>();
+
+                if (dropTarget != null)
+                {
+                    heldItem.OnRelease(true);
+                    dropTarget.OnDrop(heldItem);
+                    break;
+                }
+            }
+
+            if (dropTarget == null)
+            {
+                heldItem.OnRelease(false);
+            }
+
+            heldItem = null;
+            isHolding = false;
+
         }
     }
 

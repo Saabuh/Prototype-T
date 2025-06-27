@@ -11,7 +11,7 @@ namespace Prototype_S
     /// <summary>
     /// represents a single ItemSlot in the UI
     /// </summary>
-    public class ItemSlotUI : MonoBehaviour, IDropHandler
+    public class ItemSlotUI : MonoBehaviour, IDropTarget
     {
 
         //fields
@@ -57,21 +57,34 @@ namespace Prototype_S
             UpdateSlotUI();
         }
 
-        public void OnDrop(PointerEventData eventData)
+        // public void OnDrop(PointerEventData eventData)
+        // {
+        //     ItemDragHandler itemDragHandler = eventData.pointerDrag.GetComponent<ItemDragHandler>();
+        //
+        //     if (itemDragHandler == null)
+        //     {
+        //         return; 
+        //     }
+        //
+        //     if (itemDragHandler.ItemSlotUI != null)
+        //     {
+        //         inventory.ItemContainer.Swap(itemDragHandler.ItemSlotUI.SlotIndex, SlotIndex);
+        //     }
+        //
+        //
+        // }
+
+        public void OnDrop(IDraggableItem item)
         {
-            ItemDragHandler itemDragHandler = eventData.pointerDrag.GetComponent<ItemDragHandler>();
-
-            if (itemDragHandler == null)
+            if (item == null)
             {
-                return; 
+                return;
             }
 
-            if (itemDragHandler.ItemSlotUI != null)
+            if (item.ItemSlotUI)
             {
-                inventory.ItemContainer.Swap(itemDragHandler.ItemSlotUI.SlotIndex, SlotIndex);
+                inventory.ItemContainer.Swap(item.ItemSlotUI.SlotIndex, SlotIndex);
             }
-
-
         }
     }
 }

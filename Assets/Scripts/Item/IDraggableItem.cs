@@ -3,12 +3,14 @@ using UnityEngine.EventSystems;
 
 namespace Prototype_S
 {
-    public interface IDraggable
+    public interface IDraggableItem
     {
         
         Transform Transform { get; }
+        
+        ItemSlotUI ItemSlotUI { get; }
 
-        void OnDrop(PointerEventData eventData);
+        void OnRelease(bool targetFound);
 
         void OnPickup();
     }

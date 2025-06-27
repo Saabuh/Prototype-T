@@ -3,7 +3,10 @@ using UnityEngine.EventSystems;
 
 namespace Prototype_S.UI
 {
-    public class ItemDragHandler : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
+    /// <summary>
+    /// Manages the internal state of a single ItemIcon
+    /// </summary>
+    public class ItemDragHandler : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IDraggableItem
     {
         [SerializeField] protected ItemSlotUI itemSlotUI;
         private CanvasGroup canvasGroup;
@@ -15,47 +18,40 @@ namespace Prototype_S.UI
             canvasGroup = GetComponent<CanvasGroup>();
         }
 
+        public Transform Transform => transform;
         public ItemSlotUI ItemSlotUI => itemSlotUI;
         
         public void OnPointerDown(PointerEventData eventData)
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                
+                OnPickup();
+            }
+        }
+
+        public void OnPickup()
+        {
+            if (DragStateManager.Instance.HoldItem(this))
+            {
                 originalParent = transform.parent;
                 transform.SetParent(DragCanvas.Instance.transform);
                 canvasGroup.blocksRaycasts = false;
             }
+            
         }
-        
-
-        public void OnDrag(PointerEventData eventData)
+        public void OnRelease(bool targetFound)
         {
-            if (eventData.button == PointerEventData.InputButton.Left)
-            {
-                transform.position = Input.mousePosition;
-            }
-        }
 
-        public void OnPointerUp(PointerEventData eventData)
-        {
-            if (eventData.button == PointerEventData.InputButton.Left)
+            transform.SetParent(originalParent);
+            transform.localPosition = Vector3.zero;
+            canvasGroup.blocksRaycasts = true;
+            
+            if (!targetFound)
             {
-                transform.SetParent(originalParent);
-                transform.localPosition = Vector3.zero;
-                canvasGroup.blocksRaycasts = true;
-
-                Debug.Log(eventData.hovered.Count);
+                ItemSpawner.SpawnItem(PlayerController.LocalPlayerInstance.transform.position, itemSlotUI.ItemSlot.itemData, itemSlotUI.ItemSlot.quantity);
                 
-                //drop the item if it's released outside a canvas graphic
-                if (eventData.hovered.Count == 0)
-                {
-                    ItemSpawner.SpawnItem(PlayerController.LocalPlayerInstance.transform.position, itemSlotUI.ItemSlot.itemData, itemSlotUI.ItemSlot.quantity);
-                    
-                    // Reset item slot after spawning creating item entity
-                    itemSlotUI.Inventory.RemoveAt(itemSlotUI.SlotIndex);
-                    
-                }
+                // Reset item slot after spawning creating item entity
+                itemSlotUI.Inventory.RemoveAt(itemSlotUI.SlotIndex);
             }
         }
 
@@ -68,5 +64,6 @@ namespace Prototype_S.UI
         {
             isHovering = false;
         }
+
     }
 }

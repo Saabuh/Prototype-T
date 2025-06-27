@@ -32,3 +32,4 @@ the inventory still has reference to the item in the itemslot, because when i dr
 the core principle of an interface is to define a contract for behavior, not a contract for implementation or data storage.
 
 When you put a property in an interface, you are not telling the class "you must have a variable called Name." You are telling it: "You must provide a public-facing way for other code to get your name and set your name. I don't care how you do it internally."
+This is the final piece of the puzzle. The interfaces should represent everything another system needs to know to interact with it
