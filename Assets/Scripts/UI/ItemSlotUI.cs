@@ -34,7 +34,6 @@ namespace Prototype_S
         public void UpdateSlotUI()
         {
             
-            Debug.Log("updating slot ui....");
             if (ItemSlot.itemData == null)
             {
                 EnableSlotUI(false);

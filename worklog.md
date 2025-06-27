@@ -1,6 +1,7 @@
 # Worklog
 
 Just a note:
+"solve with your fingers"
 really like the "f*ck it up all the way and then do it for real" approach to creating stuff
 90% of the time it's faster to f*ck up and know why than it is to think about all the ways you might f*ck up
 
@@ -13,19 +14,22 @@ twiddle knobs, play some chords, feel the music, keep it or trash it, get feedba
 - [ ] considering moving the inputReader script onto a seperate InputReader object. reasoning is that we are attaching the UIManager to an instance of the inputReader component on the player. If the player dies (gameObject deleted),
 so does the input reader temporarily.
 - [x] [dragging an item and then closing the ui bugs out, item freezes on current mouse position on next inventory toggle](https://github.com/Saabuh/Prototype-T/issues/1)
-- [x] dragging an item out of the inventory, closing the inventory, dropping the item, then opening back up the inventory shows the item still there, while the item is on the ground
+- [x] [Visual duplicate item bug with inventory toggling](https://github.com/Saabuh/Prototype-T/issues/2)
+
+# TODO List
+
+## 27-06-2025
+- [ ] improve DragStateManager's Update() logic for holding detection
+- [ ] change dragging out of inventory into click and click again to drop
+- [ ] add item tooltip ui
 
 ## 26-06-2025
 - [x] [Visual duplicate item bug with inventory toggling](https://github.com/Saabuh/Prototype-T/issues/2)
 - [x] [dragging an item and then closing the ui bugs out](https://github.com/Saabuh/Prototype-T/issues/1)
-- [ ] change dragging out of inventory into click and click again to drop
-- [ ] add item tooltip ui
 
 ## 25-06-2025
 - [x] add pickup to world entities
-- [ ] add item tooltip ui
 - [x] add toggling inventory ui
-- [ ] change dragging out of inventory into click and click again to drop
 - [x] remove singleton from PlayerController
     - this was instead modified to handle multiplayer players. Will add a PlayerManager later on. 
 

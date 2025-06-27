@@ -27,3 +27,8 @@ create a delegate that holds methods that have a single Vector2 parameter.
 delegate { }; just means to add a empty, void method to the delegate to prevent null check errors.
 
 the inventory still has reference to the item in the itemslot, because when i drag the icon, i am just dragging an ItemIcon with that still references the same item slot
+
+## Interfaces
+the core principle of an interface is to define a contract for behavior, not a contract for implementation or data storage.
+
+When you put a property in an interface, you are not telling the class "you must have a variable called Name." You are telling it: "You must provide a public-facing way for other code to get your name and set your name. I don't care how you do it internally."
