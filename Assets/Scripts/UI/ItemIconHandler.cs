@@ -13,13 +13,14 @@ namespace Prototype_S.UI
         private Transform originalParent;
         private bool isHovering;
 
+
+        public Transform Transform => transform;
+        public ItemSlotUI ItemSlotUI => itemSlotUI;
+        
         private void Start()
         {
             canvasGroup = GetComponent<CanvasGroup>();
         }
-
-        public Transform Transform => transform;
-        public ItemSlotUI ItemSlotUI => itemSlotUI;
         
         public void OnPointerDown(PointerEventData eventData)
         {
