@@ -18,10 +18,13 @@ so does the input reader temporarily.
 
 # TODO List
 
+## 28-06-2025
+- [ ] add item tooltip ui
+- [ ] download terraria, corekeeper for referencing
+
 ## 27-06-2025
 - [ ] improve DragStateManager's Update() logic for holding detection, setting isHolding to true in update() is prone to bugs
 - [x] change dragging out of inventory into click and click again to drop
-- [ ] add item tooltip ui
 
 ## 26-06-2025
 - [x] [Visual duplicate item bug with inventory toggling](https://github.com/Saabuh/Prototype-T/issues/2)

@@ -13,7 +13,7 @@ namespace Prototype_S
     /// </summary>
     public class ItemSlotUI : MonoBehaviour, IDropTarget
     {
-
+        
         //fields
         [SerializeField] private Inventory inventory = null;
         [SerializeField] private TextMeshProUGUI itemQuantityText = null;
