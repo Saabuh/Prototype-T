@@ -19,7 +19,10 @@ so does the input reader temporarily.
 
 # TODO List
 ## 02-07-2025
-- [ ] add a custom Debug class for runtime enabling of debugging lines
+- [x] add a custom Debug class for runtime enabling of debugging lines
+- [x] fix minor "teleport" bug of ui showing/hiding
+- [ ] research more into procedural world generation/biome generation
+- [ ] research more into attack system architecture/implementation
 
 ## 01-07-2025
 - [x] refactor tooltipsystem into a singleton
