@@ -17,10 +17,17 @@ so does the input reader temporarily.
 - [x] [Visual duplicate item bug with inventory toggling](https://github.com/Saabuh/Prototype-T/issues/2)
 
 # TODO List
+- [ ] refactor tooltipsystem into a singleton
+
+## 29-06-2025
+- [ ] add item tooltip ui
+- [ ] swap the item data, not the actual item slot for less buggy referencing?
+
+## 29-06-2025
+- [ ] add item tooltip ui
 
 ## 28-06-2025
-- [ ] add item tooltip ui
-- [ ] download terraria, corekeeper for referencing
+- [x] download terraria, corekeeper for referencing
 
 ## 27-06-2025
 - [ ] improve DragStateManager's Update() logic for holding detection, setting isHolding to true in update() is prone to bugs

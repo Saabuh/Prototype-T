@@ -44,6 +44,7 @@ namespace Prototype_S.UI
             if (eventData.button == PointerEventData.InputButton.Left)
             {
                 OnPickup();
+                onItemSlotHoverExit.Raise();
             }
         }
 
@@ -60,33 +61,51 @@ namespace Prototype_S.UI
         
         public void OnRelease(bool targetFound)
         {
-
+            
             transform.SetParent(originalParent);
             transform.localPosition = Vector3.zero;
             canvasGroup.blocksRaycasts = true;
-            
+
             if (!targetFound)
             {
-                ItemSpawner.SpawnItem(PlayerController.LocalPlayerInstance.transform.position, itemSlotUI.ItemSlot.itemData, itemSlotUI.ItemSlot.quantity);
-                
+                ItemSpawner.SpawnItem(PlayerController.LocalPlayerInstance.transform.position,
+                    itemSlotUI.ItemSlot.itemData, itemSlotUI.ItemSlot.quantity);
+
                 // Reset item slot after spawning creating item entity
                 itemSlotUI.Inventory.RemoveAt(itemSlotUI.SlotIndex);
+            } 
+            else
+            {
+                //manually trigger OnPointerEnter event, swap the data, not the itemslot? in case it gets buggy
+                // HandlePointerEnter();
             }
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            HandlePointerEnter();
+        }
+
+        private void HandlePointerEnter()
+        {
             isHovering = true;
             onItemSlotHoverEnter.Raise(itemSlotUI.ItemSlot);
-            Debug.Log("Raising hover enter event.");
+            Debug.Log(itemSlotUI.ItemSlot.itemData);
+            // Debug.Log("Raising hover enter event.");
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            isHovering = false;
-            onItemSlotHoverExit.Raise();
-            Debug.Log("Raising hover exit event.");
+            HandlePointerExit();
         }
+        
+        private void HandlePointerExit()
+        {
+            isHovering = true;
+            onItemSlotHoverExit.Raise();
+            // Debug.Log("Raising hover exit event.");
+        }
+
 
     }
 }

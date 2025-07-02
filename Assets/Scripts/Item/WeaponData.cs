@@ -23,9 +23,10 @@ namespace Prototype_S
         {
             StringBuilder builder = new StringBuilder();
 
-            builder.Append(Name).AppendLine();
+            builder.Append(Rarity).AppendLine();
             builder.Append("Max Stack: ").Append(MaxStack).AppendLine();
-            builder.Append("Sell Price: ").Append(SellPrice).Append(" Gold");
+            builder.Append("Sell Price: ").Append(SellPrice).Append(" Gold\n");
+            builder.Append(Description);
 
             return builder.ToString();
         }

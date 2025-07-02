@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,13 +8,21 @@ namespace Prototype_S
     //manages the state of a single dragged entity/item
     public class DragStateManager : MonoBehaviour
     {
+        //events
+        [SerializeField] private VoidEvent onDragStateEnter;
+        [SerializeField] private VoidEvent onDragStateExit;
         
-        public static DragStateManager Instance { get; private set; }
+        //fields
         private IDraggableItem heldItem = null;
         private bool isHolding = false;
         private Transform originalParent;
         private CanvasGroup canvasGroup;
         
+        //getter properties
+        public bool IsHolding => isHolding;
+        
+        //singleton
+        public static DragStateManager Instance { get; private set; }
         void Awake()
         {
             if (Instance != null && Instance != this)
@@ -39,7 +48,12 @@ namespace Prototype_S
             
             }
         }
-        
+
+        private void OnDisable()
+        {
+            
+        }
+
         public bool HoldItem(IDraggableItem item) 
         {
             //already holding an item
@@ -51,6 +65,9 @@ namespace Prototype_S
             heldItem = item;
             isHolding = false;
             
+            //raise event to listeners
+            onDragStateEnter.Raise(); 
+            
             return true;
         }
 
@@ -59,6 +76,9 @@ namespace Prototype_S
         /// </summary>
         private void Release()
         {
+            
+            //raise event to listeners first!
+            onDragStateExit.Raise();
             
             //build pointer event data
             PointerEventData pointerData = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
@@ -74,8 +94,8 @@ namespace Prototype_S
 
                 if (dropTarget != null)
                 {
-                    heldItem.OnRelease(true);
                     dropTarget.OnDrop(heldItem);
+                    heldItem.OnRelease(true);
                     break;
                 }
             }
@@ -88,6 +108,7 @@ namespace Prototype_S
             //reset the dragStateManager
             heldItem = null;
             isHolding = false;
+            
 
         }
     }

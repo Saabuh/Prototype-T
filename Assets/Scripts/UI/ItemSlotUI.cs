@@ -68,6 +68,7 @@ namespace Prototype_S
             {
                 inventory.ItemContainer.Swap(item.ItemSlotUI.SlotIndex, SlotIndex);
             }
+            
         }
     }
 }
