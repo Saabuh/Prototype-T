@@ -83,29 +83,18 @@ namespace Prototype_S.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            HandlePointerEnter();
-        }
-
-        private void HandlePointerEnter()
-        {
             isHovering = true;
             onItemSlotHoverEnter.Raise(itemSlotUI.ItemSlot);
             Debug.Log(itemSlotUI.ItemSlot.itemData);
-            // Debug.Log("Raising hover enter event.");
+            Debug.Log("Raising hover enter event.");
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            HandlePointerExit();
-        }
-        
-        private void HandlePointerExit()
-        {
             isHovering = true;
             onItemSlotHoverExit.Raise();
-            // Debug.Log("Raising hover exit event.");
+            Debug.Log("Raising hover exit event.");
         }
-
-
+        
     }
 }

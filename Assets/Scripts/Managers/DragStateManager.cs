@@ -10,7 +10,7 @@ namespace Prototype_S
     {
         //events
         [SerializeField] private VoidEvent onDragStateEnter;
-        [SerializeField] private VoidEvent onDragStateExit;
+        [SerializeField] private BooleanEvent onDragStateExit;
         
         //fields
         private IDraggableItem heldItem = null;
@@ -77,8 +77,6 @@ namespace Prototype_S
         private void Release()
         {
             
-            //raise event to listeners first!
-            onDragStateExit.Raise();
             
             //build pointer event data
             PointerEventData pointerData = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
@@ -94,6 +92,9 @@ namespace Prototype_S
 
                 if (dropTarget != null)
                 {
+                    //Raise boolean event
+                    onDragStateExit.Raise(true);
+                    
                     dropTarget.OnDrop(heldItem);
                     heldItem.OnRelease(true);
                     break;
@@ -102,6 +103,7 @@ namespace Prototype_S
 
             if (dropTarget == null)
             {
+                onDragStateExit.Raise(false);
                 heldItem.OnRelease(false);
             }
 
