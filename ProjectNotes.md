@@ -119,7 +119,7 @@ public void Pickup(PlayerController player)
         else
         {
             // If AddItem returns false, the inventory is full. Do not destroy the world object.
-            Debug.Log("Inventory is full!");
+            Log.Info("Inventory is full!");
             // You might want to update the world item's quantity if it was partially picked up.
             // For simplicity, we can just leave it as is for now.
         }

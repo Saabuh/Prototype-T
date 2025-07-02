@@ -1,4 +1,5 @@
 using Item;
+using Prototype_S;
 using UnityEngine;
 
 namespace Player
@@ -26,7 +27,7 @@ namespace Player
             if (player.cooldown <= 0)
             {
                 Fire(player);
-                // Debug.Log("Fire");
+                // Log.Info("Fire");
                 player.cooldown = player.cooldownDuration;
             }     
         }
@@ -38,7 +39,7 @@ namespace Player
             Vector2 direction = (mousePosition - (Vector2)player.transform.position).normalized;
             
             //debug
-            Debug.Log("Direction: " + direction);
+            Log.Info("Direction: " + direction);
 
             GameObject projectile =
                 Object.Instantiate(player.projectilePrefab, player.transform.position, Quaternion.identity);

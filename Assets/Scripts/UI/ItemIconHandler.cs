@@ -35,7 +35,7 @@ namespace Prototype_S.UI
             {
                 onItemSlotHoverExit.Raise();
                 isHovering = false;
-                Debug.Log("Raising hover exit event.");
+                Log.Info("Raising hover exit event.");
             }
         }
 
@@ -85,15 +85,15 @@ namespace Prototype_S.UI
         {
             isHovering = true;
             onItemSlotHoverEnter.Raise(itemSlotUI.ItemSlot);
-            Debug.Log(itemSlotUI.ItemSlot.itemData);
-            Debug.Log("Raising hover enter event.");
+            Log.Info(itemSlotUI.ItemSlot.itemData);
+            Log.Info("Raising hover enter event.");
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            isHovering = true;
+            isHovering = false;
             onItemSlotHoverExit.Raise();
-            Debug.Log("Raising hover exit event.");
+            Log.Info("Raising hover exit event.");
         }
         
     }

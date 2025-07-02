@@ -33,10 +33,10 @@ namespace Player
                 if (newState != null)
                 {
                     _activeStates[i].Exit();
-                    // Debug.Log("Exiting " + _activeStates[i].GetType().Name);
+                    // Log.Info("Exiting " + _activeStates[i].GetType().Name);
                     _activeStates[i] = newState;
                     _activeStates[i].Enter();
-                    // Debug.Log("Entering " + _activeStates[i].GetType().Name);
+                    // Log.Info("Entering " + _activeStates[i].GetType().Name);
                 }
                 
                 _activeStates[i].Update(this);

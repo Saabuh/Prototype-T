@@ -44,7 +44,7 @@ namespace Prototype_S
                 
                 Destroy(this.gameObject);
                 
-                // Debug.Log("item was picked up and destroyed");
+                // Log.Info("item was picked up and destroyed");
 
             }
             
@@ -60,7 +60,7 @@ namespace Prototype_S
             yield return new WaitForSeconds(pickUpDelay);
             
             canBePickedUp = true;
-            // Debug.Log("Item can now be picked up.");
+            // Log.Info("Item can now be picked up.");
         }
 
     }

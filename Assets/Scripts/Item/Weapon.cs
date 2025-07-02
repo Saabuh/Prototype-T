@@ -21,7 +21,7 @@ namespace Prototype_S
         
         public void Use()
         {
-            Debug.Log("Weapon has been used.");
+            Log.Info("Weapon has been used.");
         }
     }
 }

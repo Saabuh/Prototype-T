@@ -48,15 +48,18 @@ namespace Prototype_S
                 toolTipBackground.rectTransform.position = new Vector2(Input.mousePosition.x + 15, Input.mousePosition.y + 15);
             }
         }
-        public void ShowTooltip(ItemSlot item)
+        public void Show()
         {
-            Debug.Log("Show Tooltip....");
+            Log.Info("Show Tooltip....");
+            
+            //redraw tooltip position before showing
+            toolTipBackground.rectTransform.position = new Vector2(Input.mousePosition.x + 15, Input.mousePosition.y + 15);
             toolTipCanvas.SetActive(true);
         }
 
-        public void HideTooltip()
+        public void Hide()
         {
-            Debug.Log("Hide Tooltip...");
+            Log.Info("Hide Tooltip...");
             toolTipCanvas.SetActive(false);
         }
 
@@ -70,7 +73,15 @@ namespace Prototype_S
             onItemSlotHoverEnter.enabled = true;
             onItemSlotHoverExit.enabled = true;
 
-            toolTipCanvas.SetActive(targetFound);
+            //show or hide a tooltip depending on if the pointer is currently hovering something
+            if (targetFound)
+            {
+                Show();
+            }
+            else
+            {
+                Hide();
+            }
         }
         
         public void DisableHovers()
@@ -80,7 +91,7 @@ namespace Prototype_S
             onItemSlotHoverExit.enabled = false;
             
             //make sure the tooltip is not showing
-            toolTipCanvas.SetActive(false);
+            Hide();
         }
 
         public void PopulateTooltipInfo(ItemSlot item)

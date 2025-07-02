@@ -284,7 +284,7 @@ public static class ItemSpawner
         _itemInWorldPrefab = Resources.Load<GameObject>("ItemInWorld");
         if (_itemInWorldPrefab == null)
         {
-            Debug.LogError("ItemInWorld prefab not found in Resources folder!");
+            Log.InfoError("ItemInWorld prefab not found in Resources folder!");
         }
     }
 
@@ -292,7 +292,7 @@ public static class ItemSpawner
     {
         if (_itemInWorldPrefab == null || itemData == null || quantity <= 0)
         {
-            Debug.LogWarning("Could not spawn item. Prefab, ItemData, or quantity is invalid.");
+            Log.InfoWarning("Could not spawn item. Prefab, ItemData, or quantity is invalid.");
             return;
         }
 

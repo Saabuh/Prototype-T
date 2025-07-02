@@ -19,12 +19,12 @@ namespace Prototype_S
              // --- Safety Checks ---
             if (_worldItemPrefab == null)
             {
-                Debug.LogError("Cannot spawn item because the ItemInWorld prefab was not loaded.");
+                Log.Info("Cannot spawn item because the ItemInWorld prefab was not loaded.");
             }
             
             if (item == null)
             {
-                Debug.LogWarning("Tried to spawn an item with null ItemData.");
+                Log.Info("Tried to spawn an item with null ItemData.");
             }
 
             //instantiate a blank canvas, a empty world item prefab
