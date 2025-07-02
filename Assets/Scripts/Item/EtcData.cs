@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 
 namespace Prototype_S
@@ -8,7 +9,15 @@ namespace Prototype_S
    {
        public override string GetItemDisplayText()
        {
-           throw new System.NotImplementedException();
+           StringBuilder builder = new StringBuilder();
+           
+           builder.Append(Rarity).AppendLine();
+           builder.Append("Max Stack: ").Append(MaxStack).AppendLine();
+           builder.Append("Sell Price: ").Append(SellPrice).Append(" Gold\n");
+           builder.Append(Description);
+           
+           return builder.ToString();
+
        }
    }
 }
