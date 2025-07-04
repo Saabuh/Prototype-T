@@ -18,10 +18,28 @@ so does the input reader temporarily.
 - [x] [Visual duplicate item bug with inventory toggling](https://github.com/Saabuh/Prototype-T/issues/2)
 
 # TODO List
+## 04-07-2025
+- [ ] implement different biome generation based on moisture, temperature
+- [x] implement interactive noise visualizer
+
+## 03-07-2025
+- [x] research more into procedural world generation/biome generation
+    - looking into cellular automata, and stitching together a perlin noise map with a cellulor automata map (wave function collapse maybe?)
+- [ ] research more into attack system architecture/implementation
+
+## 02-07-2025
+- [x] research more into procedural world generation/biome generation
+    - looking into cellular automata, and stitching together a perlin noise map with a cellulor automata map (wave function collapse maybe?)
+
+## 02-07-2025
+- [x] research more into procedural world generation/biome generation
+    - looking into cellular automata, and stitching together a perlin noise map with a cellulor automata map (wave function collapse maybe?)
+
 ## 02-07-2025
 - [x] add a custom Debug class for runtime enabling of debugging lines
 - [x] fix minor "teleport" bug of ui showing/hiding
 - [ ] research more into procedural world generation/biome generation
+    - looking into cellular automata, and stitching together a perlin noise map with a cellulor automata map (wave function collapse maybe?)
 - [ ] research more into attack system architecture/implementation
 
 ## 01-07-2025
