@@ -6,9 +6,6 @@ namespace Prototype_S
 {
     public class MapGenerator : MonoBehaviour
     {
-        [SerializeField] private int mapWidth;
-        [SerializeField] private int mapHeight;
-        [SerializeField] private float scale;
         [SerializeField] private float treeScale;
         [SerializeField] private float treeDensity = 0.25f;
 
@@ -20,6 +17,15 @@ namespace Prototype_S
         [SerializeField] private TileBase waterTile; // Tile for water
         [SerializeField] private TileBase grassTile; // Tile for grass
         [SerializeField] private TileBase sandTile; // Tile for mountains
+        
+        [Header("Map Noise Generation Settings")]
+        [SerializeField] private int mapWidth;
+        [SerializeField] private int mapHeight;
+        [SerializeField] private float scale;
+        [SerializeField] private int octaves;
+        [SerializeField] private float exponent;
+        [SerializeField] private int seed;
+        
 
         [ContextMenu("Generate Map")]
         public void GenerateMap()
@@ -28,7 +34,7 @@ namespace Prototype_S
             waterMap.ClearAllTiles();
 
             //generate terrain noise map
-            float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale);
+            float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, octaves, exponent, seed);
 
             //fill terrain tiles based on noise map
             for (int y = 0; y < mapHeight; y++)
@@ -40,11 +46,11 @@ namespace Prototype_S
 
                     switch (noiseMap[x, y])
                     {
-                        case < 0.25f:
+                        case < 0.20f:
                             selectedTile = waterTile;
                             selectedTileMap = waterMap;
                             break;
-                        case < 0.35f:
+                        case < 0.26f:
                             selectedTile = sandTile;
                             selectedTileMap = terrainMap;
                             break;
@@ -78,6 +84,8 @@ namespace Prototype_S
                 }
             }
         }
+        
+        
 
         private bool isWater(int x, int y)
         {
