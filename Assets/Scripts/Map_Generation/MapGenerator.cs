@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 namespace Prototype_S
@@ -17,6 +16,9 @@ namespace Prototype_S
         [SerializeField] private TileBase waterTile; // Tile for water
         [SerializeField] private TileBase grassTile; // Tile for grass
         [SerializeField] private TileBase sandTile; // Tile for mountains
+        
+        //events
+        [SerializeField] private MapDataEvent OnMapGenerated;
 
         public List<Biome> biomes;
         public Dictionary<BiomeType, Biome> biomesDict;
@@ -85,6 +87,9 @@ namespace Prototype_S
                     terrainMap.SetTile(new Vector3Int(x, y, 0), selectedTile);
                 }
             }
+            
+            //Raise Map Generated Event
+            OnMapGenerated.Raise(new MapData(mapWidth, mapHeight));
 
         }
 

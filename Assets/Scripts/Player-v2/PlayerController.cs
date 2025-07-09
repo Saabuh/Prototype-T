@@ -9,6 +9,10 @@ namespace Prototype_S
     public class PlayerController : MonoBehaviour
     {
         public static PlayerController LocalPlayerInstance { get; private set; }
+        
+        //fields
+        public float playerSpeed = 5.0f;
+        
         // This boolean would be set by your networking system (e.g., Mirror, Netcode).
         // For testing, you can set it manually in the Inspector.
         [Tooltip("Is this the player controlled by this computer?")]
@@ -25,8 +29,6 @@ namespace Prototype_S
         
         //getter properties
         public Inventory Inventory => inventory;
-        
-        public float playerSpeed = 5.0f;
 
         void Awake()
         {
@@ -65,6 +67,10 @@ namespace Prototype_S
             Move();
         }
 
+        public void Teleport(MapData mapData)
+        {
+            transform.position = new Vector3(mapData.mapWidth / 2, mapData.mapHeight / 2, 0);
+        }
         private void Move()
         {
             Vector2 movement = new Vector2(playerInput.Horizontal, playerInput.Vertical);
