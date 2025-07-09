@@ -40,10 +40,15 @@ namespace Prototype_S
                     //for each octave, increase frequency and lower amplitude
                     for (int i = 0; i < octaves; i++)
                     {
-                        //add a new offset to each octave to sample from different areas of noise space
+                        //normalize x/y, between -1/+1
+                        float nx = (2f * x) / width - 1;
+                        float ny = (2f * y) / height - 1;
                         
-                        float sampleX = x / scale * frequency + octaveOffsets[i];
-                        float sampleY = y / scale * frequency + octaveOffsets[i];
+                        //add a new offset to each octave to sample from different areas of noise space
+                        float sampleX = (nx / scale * frequency) + octaveOffsets[i];
+                        float sampleY = (ny / scale * frequency) + octaveOffsets[i];
+                        // float sampleX = (nx + octaveOffsets[i]) * scale * frequency;
+                        // float sampleY = (ny + octaveOffsets[i]) * scale * frequency;
 
                         float perlinValue =  amplitude * (Mathf.PerlinNoise(sampleX, sampleY));
                         noiseHeight += perlinValue;

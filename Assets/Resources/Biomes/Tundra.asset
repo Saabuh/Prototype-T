@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a431ca483cd28ab913807015596400, type: 3}
   m_Name: Tundra
   m_EditorClassIdentifier: 
-  biomeTile: {fileID: 0}
+  biomeType: 4
+  biomeTile: {fileID: 11400000, guid: cdb33f50d5e2ef02ca47b8c7cb77dde4, type: 2}

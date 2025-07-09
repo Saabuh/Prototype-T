@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11a431ca483cd28ab913807015596400, type: 3}
-  m_Name: Grassland
+  m_Name: Grasslands
   m_EditorClassIdentifier: 
-  biomeTile: {fileID: 0}
+  biomeType: 1
+  biomeTile: {fileID: 11400000, guid: 3621e6a5c328004a6addacf6391668ad, type: 2}

@@ -18,8 +18,10 @@ so does the input reader temporarily.
 - [x] [Visual duplicate item bug with inventory toggling](https://github.com/Saabuh/Prototype-T/issues/2)
 
 # TODO List
+## 09-07-2025
 ## 07-07-2025
-- [ ] implement different biome generation based on moisture, temperature
+- [x] implement different biome generation based on moisture, temperature
+- [ ] try to get a better understanding on the formula behind island formation using square bump/euclidean
 - [ ] research more into attack system architecture/implementation
 
 ## 04-07-2025
