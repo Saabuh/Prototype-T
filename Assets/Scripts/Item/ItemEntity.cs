@@ -32,15 +32,15 @@ namespace Prototype_S
                 return;
             }
 
-            Inventory inventory = player.Inventory;
+            ItemContainerDefinition itemContainerDefinition = player.PlayerInventory.Inventory;
 
-            if (inventory != null)
+            if (itemContainerDefinition != null)
             {
                 //create new itemSlot to add
                 ItemSlot itemSlotToAdd = new ItemSlot(Item, Quantity);
                 
                 //Add to inventory
-                inventory.ItemContainer.AddItem(itemSlotToAdd);
+                itemContainerDefinition.ItemContainer.AddItem(itemSlotToAdd);
                 
                 Destroy(this.gameObject);
                 

@@ -15,15 +15,15 @@ namespace Prototype_S
     {
         
         //fields
-        [SerializeField] private Inventory inventory = null;
+        [SerializeField] private ItemContainerDefinition itemContainerDefinition = null;
         [SerializeField] private TextMeshProUGUI itemQuantityText = null;
         [SerializeField] private Image itemIconImage = null;
         
         //properties
         public int SlotIndex { get; private set; }
-        public ItemSlot ItemSlot => inventory.ItemContainer.GetSlotByIndex(SlotIndex);
+        public ItemSlot ItemSlot => itemContainerDefinition.ItemContainer.GetSlotByIndex(SlotIndex);
 
-        public ItemContainer Inventory => inventory.ItemContainer;
+        public ItemContainer Inventory => itemContainerDefinition.ItemContainer;
 
         void Start()
         {
@@ -66,7 +66,7 @@ namespace Prototype_S
 
             if (item.ItemSlotUI)
             {
-                inventory.ItemContainer.Swap(item.ItemSlotUI.SlotIndex, SlotIndex);
+                itemContainerDefinition.ItemContainer.Swap(item.ItemSlotUI.SlotIndex, SlotIndex);
             }
             
         }

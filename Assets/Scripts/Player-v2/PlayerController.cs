@@ -22,13 +22,14 @@ namespace Prototype_S
         [SerializeField] private VoidEvent onCharacterAttack;
 
         //facade properties
-        [SerializeField] private Inventory inventory;
+        private PlayerInventory playerInventory;
         private InputReader playerInput;
         private PlayerInteraction interactor;
         private Rigidbody2D playerRb;
         
         //getter properties
-        public Inventory Inventory => inventory;
+        public PlayerInventory PlayerInventory => playerInventory;
+        
 
         void Awake()
         {
@@ -50,6 +51,7 @@ namespace Prototype_S
             //initialize facade references
             playerInput = GetComponent<InputReader>();
             playerRb = GetComponent<Rigidbody2D>();
+            playerInventory = GetComponent<PlayerInventory>();
         }
 
         void Start()
