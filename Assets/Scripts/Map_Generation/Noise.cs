@@ -8,7 +8,7 @@ namespace Prototype_S
     public static class Noise
     {
 
-        public static float[,] GenerateNoiseMap(int width, int height, float scale, int octaves = 1, float exponent = 1, int seed = 0)
+        public static float[,] GenerateNoiseMap(int width, int height, float scale, int octaves = 1, float exponent = 1, int seed = 0, bool lerp = false)
         {
             float[,] noiseMap = new float[width, height];
             int[] octaveOffsets = new int[octaves];
@@ -37,33 +37,49 @@ namespace Prototype_S
                     float frequency = 1;
                     float noiseHeight = 0;
                     
+                    //normalize x/y, between -1/+1
+                    float nx = (2f * x) / width - 1;
+                    float ny = (2f * y) / height - 1;
+                    
                     //for each octave, increase frequency and lower amplitude
                     for (int i = 0; i < octaves; i++)
                     {
-                        //normalize x/y, between -1/+1
-                        float nx = (2f * x) / width - 1;
-                        float ny = (2f * y) / height - 1;
                         
                         //add a new offset to each octave to sample from different areas of noise space
                         float sampleX = (nx / scale * frequency) + octaveOffsets[i];
                         float sampleY = (ny / scale * frequency) + octaveOffsets[i];
-                        // float sampleX = (nx + octaveOffsets[i]) * scale * frequency;
-                        // float sampleY = (ny + octaveOffsets[i]) * scale * frequency;
 
                         float perlinValue =  amplitude * (Mathf.PerlinNoise(sampleX, sampleY));
+                        
+                        //final noise value
                         noiseHeight += perlinValue;
 
                         amplitudeSum += amplitude;
-                        
                         amplitude = (amplitude / 2);
                         frequency *= 2;
                     }
                     
-                    //add the amplitude sum to keep noise clamped to 0-1
+                    
+                    //add the amplitude sum to keep noiseHeight clamped to 0-1
                     noiseHeight = (noiseHeight / amplitudeSum);
                     
                     //raise value to an exponent for higher peaks/flatter valleys
-                    noiseMap[x, y] = (float)Math.Pow(noiseHeight, exponent);
+                    // noiseMap[x, y] = (float)Math.Pow(noiseHeight, exponent);
+                    noiseHeight = (float)Math.Pow(noiseHeight, exponent);
+
+                    if (lerp)
+                    {
+                        //calculate distance from origin point
+                        double d = 1 - (1 - Math.Pow(nx, 2)) * (1 - Math.Pow(ny, 2));
+                    
+                        //apply linear interpolation
+                        noiseMap[x, y] = Mathf.Lerp(noiseHeight, (float)(1 - d), (float)0.5);
+                    }
+                    else
+                    {
+                        noiseMap[x, y] = noiseHeight;
+                    }
+                    
                 }
             }
 

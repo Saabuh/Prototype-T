@@ -19,10 +19,15 @@ so does the input reader temporarily.
 
 # TODO List
 ## 09-07-2025
+- [ ] add itemslot selection
+- [ ] research more into attack system architecture/implementation
+
+## 09-07-2025
+- [ ] try to get a better understanding on the formula behind island formation using square bump/euclidean
+- [x] change starter map into an island
+
 ## 07-07-2025
 - [x] implement different biome generation based on moisture, temperature
-- [ ] try to get a better understanding on the formula behind island formation using square bump/euclidean
-- [ ] research more into attack system architecture/implementation
 
 ## 04-07-2025
 - [x] add new biome tilesets

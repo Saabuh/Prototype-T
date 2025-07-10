@@ -47,7 +47,7 @@ namespace Prototype_S
             }
             
             //generate noise maps
-            float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, octaves, exponent, terrainSeed);
+            float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, octaves, exponent, terrainSeed, true);
             float[,] moistureMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, octaves, exponent, moistureSeed);
             
             //fill terrain tiles based on noise map
