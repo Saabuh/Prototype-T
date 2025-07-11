@@ -10,6 +10,7 @@ namespace Prototype_S
         [Tooltip("Template used to create new inventory")]
         [SerializeField] private ItemContainerDefinition containerTemplate;
         public ItemContainerDefinition Inventory { get; private set; }
+        public int selectedSlotIndex = 0;
 
         //used purely for debugging/ spawning items
         [Header("reference to instantiated Inventory")] [SerializeField]
@@ -22,12 +23,17 @@ namespace Prototype_S
             
             //assign the inventory debug reference
             inventoryRunTimeReference = Inventory;
-
         }
 
         private void OnDestroy()
         {
             Inventory.OnDestroyCleanup();
+        }
+
+        public void SelectSlotIndex(int index)
+        {
+            selectedSlotIndex = index;
+            Log.Info("slot " + selectedSlotIndex + " selected");
         }
     }
 }

@@ -9,9 +9,13 @@ namespace Prototype_S
         public float Horizontal { get; private set; }
         public float Vertical { get; private set; }
 
-        public event Action<Vector2> OnFire = delegate { };
+        //refactor to customEventSystem later
+        // public event Action<Vector2> OnFire = delegate { };
         public event Action OnInventoryToggle = delegate { };
 
+        [Header("Custom Event References")]
+        [SerializeField] private IntegerEvent onHotbarSelect;
+        [SerializeField] private 
 
         // Update is called once per frame
         void Update()
@@ -24,9 +28,23 @@ namespace Prototype_S
                Fire(); 
             }
 
+            //refactor
             if (Input.GetKeyDown(KeyCode.I))
             {
                 OnInventoryToggle.Invoke();
+            }
+
+            CheckHotbarInput();
+        }
+
+        private void CheckHotbarInput()
+        {
+            for (int i = 0; i <= 9; i++)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha0 + i))
+                {
+                    onHotbarSelect.Raise(i);
+                }
             }
         }
 

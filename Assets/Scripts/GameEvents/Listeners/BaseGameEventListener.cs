@@ -25,6 +25,10 @@ namespace Prototype_S
             GameEvent.UnregisterListener(this);
         }
 
+        /// <summary>
+        /// when invoked, must provide a parameter of type T
+        /// </summary>
+        /// <param name="item"></param>
         public void OnEventRaised(T item)
         {
             if (unityEventResponse != null)

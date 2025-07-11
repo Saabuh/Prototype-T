@@ -20,8 +20,9 @@ so does the input reader temporarily.
 # TODO List
 ## 09-07-2025
 - [ ] add itemslot selection
-- [ ] refactor inventory to be instantiated instead of hard coded via ScriptableObjects
+- [x] refactor inventory to be instantiated instead of hard coded via ScriptableObjects
 - [ ] research more into attack system architecture/implementation
+- [ ] map out Custom Event System to understand it better
 
 ## 09-07-2025
 - [ ] try to get a better understanding on the formula behind island formation using square bump/euclidean
