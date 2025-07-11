@@ -15,7 +15,7 @@ namespace Prototype_S
     {
         
         //fields
-        [SerializeField] private ItemContainerDefinition itemContainerDefinition = null;
+        private ItemContainerDefinition itemContainerDefinition = null;
         [SerializeField] private TextMeshProUGUI itemQuantityText = null;
         [SerializeField] private Image itemIconImage = null;
         
@@ -25,10 +25,16 @@ namespace Prototype_S
 
         public ItemContainer Inventory => itemContainerDefinition.ItemContainer;
 
-        void Start()
+        // void Start()
+        // {
+        //     SlotIndex = transform.GetSiblingIndex();
+        //     UpdateSlotUI();
+        // }
+
+        public void Initialize(ItemContainerDefinition itemContainer, int slotIndex)
         {
-            SlotIndex = transform.GetSiblingIndex();
-            UpdateSlotUI();
+            itemContainerDefinition = itemContainer;
+            SlotIndex = slotIndex;
         }
 
         public void UpdateSlotUI()
@@ -54,7 +60,11 @@ namespace Prototype_S
 
         private void OnEnable()
         {
-            UpdateSlotUI();
+            //make sure itemContainer is defined first
+            if (itemContainerDefinition != null)
+            {
+                UpdateSlotUI();
+            }
         }
 
         public void OnDrop(IDraggableItem item)

@@ -20,6 +20,7 @@ so does the input reader temporarily.
 # TODO List
 ## 09-07-2025
 - [ ] add itemslot selection
+- [ ] refactor inventory to be instantiated instead of hard coded via ScriptableObjects
 - [ ] research more into attack system architecture/implementation
 
 ## 09-07-2025

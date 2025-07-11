@@ -17,6 +17,7 @@ namespace Prototype_S
         
         //getter properties
         public ItemContainer ItemContainer { get; private set; }
+        public int ContainerSize => containerSize;
 
         [ContextMenu("Test adding ItemSlot")]
         public void TestAddItemSlot()
@@ -45,14 +46,5 @@ namespace Prototype_S
             }
         }
 
-        // public void OnEnable()
-        // {
-        //     ItemContainer.OnItemsUpdated += onItemContainerUpdated.Raise;
-        // }
-        //
-        // public void OnDisable()
-        // {
-        //     ItemContainer.OnItemsUpdated -= onItemContainerUpdated.Raise;
-        // }
     }
 }
