@@ -18,8 +18,15 @@ so does the input reader temporarily.
 - [x] [Visual duplicate item bug with inventory toggling](https://github.com/Saabuh/Prototype-T/issues/2)
 
 # TODO List
+
+## 11-07-2025
+- [ ] seperate inventory and hotbar, make hotbar always displayed vs show inventory on press
+- [ ] add item use logic, Action Strategies for different items (mining, weapon, block)
+
+## 10-07-2025
+- [x] add itemslot selection
+
 ## 09-07-2025
-- [ ] add itemslot selection
 - [x] refactor inventory to be instantiated instead of hard coded via ScriptableObjects
 - [ ] research more into attack system architecture/implementation
 - [ ] map out Custom Event System to understand it better

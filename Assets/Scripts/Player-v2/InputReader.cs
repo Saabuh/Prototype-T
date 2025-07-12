@@ -15,7 +15,7 @@ namespace Prototype_S
 
         [Header("Custom Event References")]
         [SerializeField] private IntegerEvent onHotbarSelect;
-        [SerializeField] private 
+        [SerializeField] private Vector2Event onLeftClick;
 
         // Update is called once per frame
         void Update()
@@ -25,7 +25,7 @@ namespace Prototype_S
 
             if (Input.GetButtonDown("Fire1"))
             {
-               Fire(); 
+               Use(); 
             }
 
             //refactor
@@ -48,13 +48,12 @@ namespace Prototype_S
             }
         }
 
-        void Fire()
+        void Use()
         {
             //get mouse position of click and convert to world point
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            
-            //ping OnFire event for all observers
-            OnFire.Invoke(mousePosition);
+        
+            onLeftClick.Raise(mousePosition);
         }
     }
 }

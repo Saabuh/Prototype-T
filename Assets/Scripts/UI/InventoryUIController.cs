@@ -46,6 +46,12 @@ namespace Prototype_S
             {
                 GameObject itemSlotGo = Instantiate(itemSlotUIPrefab, slotContainer);
                 ItemSlotUI itemSlotUI = itemSlotGo.GetComponent<ItemSlotUI>();
+                
+                //make the first itemslot selected on instantiation/by default
+                if (i == 0)
+                {
+                    itemSlotUI.UpdateSelectedSlot(true);
+                }
 
                 itemSlotUI.Initialize(containerDefinition, i);
                 
@@ -60,6 +66,24 @@ namespace Prototype_S
         {
             foreach (var slot in uiSlots)
             {
+                slot.UpdateSlotUI();
+            }
+        }
+
+        public void UpdateSelectedSlot(int slotIndex)
+        {
+            Log.Info("Update selected slot " + slotIndex);
+            foreach (var slot in uiSlots)
+            {
+                if (slot.SlotIndex == slotIndex)
+                {
+                      slot.UpdateSelectedSlot(true);
+                }
+                else
+                {
+                    slot.UpdateSelectedSlot(false);
+                }
+
                 slot.UpdateSlotUI();
             }
         }

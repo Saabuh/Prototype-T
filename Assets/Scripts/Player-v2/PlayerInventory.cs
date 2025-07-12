@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Prototype_S
 {
+    
+    /// <summary>
+    /// Responsible for PlayerInventory Behaviour
+    /// </summary>
     public class PlayerInventory : MonoBehaviour
     {
 
@@ -11,10 +15,14 @@ namespace Prototype_S
         [SerializeField] private ItemContainerDefinition containerTemplate;
         public ItemContainerDefinition Inventory { get; private set; }
         public int selectedSlotIndex = 0;
-
+        
+        //events
+        [SerializeField] private IntegerEvent onSelectedSlotChanged;
+        
         //used purely for debugging/ spawning items
         [Header("reference to instantiated Inventory")] [SerializeField]
         private ItemContainerDefinition inventoryRunTimeReference;
+        
         private void Awake()
         {
             //create new instance of a ItemContainerDefinition using the containerTemplate 
@@ -34,6 +42,24 @@ namespace Prototype_S
         {
             selectedSlotIndex = index;
             Log.Info("slot " + selectedSlotIndex + " selected");
+            
+            onSelectedSlotChanged.Raise(selectedSlotIndex);
+        }
+
+        public ItemSlot GetInventorySlot()
+        {
+            ItemSlot itemSlot = Inventory.ItemContainer.GetSlotByIndex(selectedSlotIndex);
+
+            if (itemSlot.itemData == null)
+            {
+                Log.Info("item slot data is null");
+            }
+            else
+            {
+                Log.Info(itemSlot.itemData.Name);
+            }
+
+            return itemSlot;
         }
     }
 }
