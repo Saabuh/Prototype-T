@@ -18,17 +18,14 @@ namespace Prototype_S
         [Tooltip("Is this the player controlled by this computer?")]
         public bool isLocalPlayer = true;
         
-        //events
-        [SerializeField] private VoidEvent onCharacterAttack;
-
         //facade properties
-        [SerializeField] private Inventory inventory;
+        private PlayerInventory playerInventory;
         private InputReader playerInput;
         private PlayerInteraction interactor;
         private Rigidbody2D playerRb;
         
         //getter properties
-        public Inventory Inventory => inventory;
+        public PlayerInventory PlayerInventory => playerInventory;
 
         void Awake()
         {
@@ -50,27 +47,14 @@ namespace Prototype_S
             //initialize facade references
             playerInput = GetComponent<InputReader>();
             playerRb = GetComponent<Rigidbody2D>();
+            playerInventory = GetComponent<PlayerInventory>();
         }
-
-        void Start()
-        {
-            
-            //subscribe functions to events
-            playerInput.OnFire += HandleUse;
-
-        }
-        
-        
 
         void Update()
         {
             Move();
         }
 
-        public void Teleport(MapData mapData)
-        {
-            transform.position = new Vector3(mapData.mapWidth / 2, mapData.mapHeight / 2, 0);
-        }
         private void Move()
         {
             Vector2 movement = new Vector2(playerInput.Horizontal, playerInput.Vertical);
@@ -79,9 +63,20 @@ namespace Prototype_S
             // transform.Translate(movement * (playerSpeed * Time.deltaTime));
         }
 
-        void HandleUse(Vector2 mousePosition)
+        public void Teleport(MapData mapData)
         {
-            onCharacterAttack.Raise();
+            // transform.position = new Vector3(mapData.mapWidth / 2, mapData.mapHeight / 2, 0);
+            
+            playerRb.position = new Vector2(mapData.mapWidth / 2, mapData.mapHeight / 2);
+        }
+        
+        public void HandleUse(Vector2 mousePosition)
+        {
+            
+            Log.Info("Handling use");
+            PlayerInventory.GetInventorySlot();
+            
+            
             // //determine aim direction
             // Vector2 direction = (mousePosition - (Vector2)player.transform.position).normalized;
             //

@@ -5,12 +5,19 @@ namespace Prototype_S
 {
     public class InputReader : MonoBehaviour
     {
+        
+        //events
+        [Header("Custom Event References")]
+        [SerializeField] private IntegerEvent onHotbarSelect;
+        [SerializeField] private Vector2Event onLeftClick;
+        [SerializeField] private VoidEvent onInventoryUIToggle;
 
+        //properties
         public float Horizontal { get; private set; }
         public float Vertical { get; private set; }
 
-        public event Action<Vector2> OnFire = delegate { };
-        public event Action OnInventoryToggle = delegate { };
+        //refactor to customEventSystem later
+        // public event Action<Vector2> OnFire = delegate { };
 
 
         // Update is called once per frame
@@ -21,22 +28,41 @@ namespace Prototype_S
 
             if (Input.GetButtonDown("Fire1"))
             {
-               Fire(); 
+               Use(); 
             }
 
+            //refactor
             if (Input.GetKeyDown(KeyCode.I))
             {
-                OnInventoryToggle.Invoke();
+                onInventoryUIToggle.Raise();
+            }
+
+            CheckHotbarInput();
+        }
+
+        private void CheckHotbarInput()
+        {
+            for (int i = 1; i <= 9; i++)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha0 + i))
+                {
+                    onHotbarSelect.Raise(i - 1);
+                }
+
+            }
+            
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                onHotbarSelect.Raise(9);
             }
         }
 
-        void Fire()
+        void Use()
         {
             //get mouse position of click and convert to world point
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            
-            //ping OnFire event for all observers
-            OnFire.Invoke(mousePosition);
+        
+            onLeftClick.Raise(mousePosition);
         }
     }
 }
