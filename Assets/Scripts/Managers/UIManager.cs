@@ -5,23 +5,11 @@ namespace Prototype_S
 {
     public class UIManager : MonoBehaviour
     {
-        
-        [SerializeField] private InputReader inputReader;
-        [SerializeField] private GameObject inventoryPanel;
+        [SerializeField] private GameObject inventoryCanvas;
 
-        private void OnEnable()
+        public void ToggleInventory()
         {
-            inputReader.OnInventoryToggle += ToggleInventory;
-        }
-
-        private void OnDisable()
-        {
-            inputReader.OnInventoryToggle -= ToggleInventory;
-        }
-
-        private void ToggleInventory()
-        {
-            inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+            inventoryCanvas.SetActive(!inventoryCanvas.activeSelf);
         }
     }
 }

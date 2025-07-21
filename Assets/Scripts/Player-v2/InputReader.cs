@@ -5,17 +5,20 @@ namespace Prototype_S
 {
     public class InputReader : MonoBehaviour
     {
+        
+        //events
+        [Header("Custom Event References")]
+        [SerializeField] private IntegerEvent onHotbarSelect;
+        [SerializeField] private Vector2Event onLeftClick;
+        [SerializeField] private VoidEvent onInventoryUIToggle;
 
+        //properties
         public float Horizontal { get; private set; }
         public float Vertical { get; private set; }
 
         //refactor to customEventSystem later
         // public event Action<Vector2> OnFire = delegate { };
-        public event Action OnInventoryToggle = delegate { };
 
-        [Header("Custom Event References")]
-        [SerializeField] private IntegerEvent onHotbarSelect;
-        [SerializeField] private Vector2Event onLeftClick;
 
         // Update is called once per frame
         void Update()
@@ -31,7 +34,7 @@ namespace Prototype_S
             //refactor
             if (Input.GetKeyDown(KeyCode.I))
             {
-                OnInventoryToggle.Invoke();
+                onInventoryUIToggle.Raise();
             }
 
             CheckHotbarInput();

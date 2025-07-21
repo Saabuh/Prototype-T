@@ -19,6 +19,10 @@ so does the input reader temporarily.
 
 # TODO List
 ## 21-07-2025
+- [ ] move the onSelectedSlotChanged listeners from the inventoryUIController to the itemSlotUI
+- [ ] seperate inventory and hotbar, make hotbar always displayed vs show inventory on press
+- [ ] add item use logic, Action Strategies for different items (mining, weapon, block)
+- [ ] Replace onInventoryToggle event handler with custom event handler
 
 ## 11-07-2025
 - [ ] move the onSelectedSlotChanged listeners from the inventoryUIController to the itemSlotUI
