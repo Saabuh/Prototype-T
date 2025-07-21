@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Prototype_S
 {
@@ -16,7 +17,8 @@ namespace Prototype_S
         [SerializeField] private GameObject itemSlotUIPrefab;
         
         // The parent Transform for all the slot UI objects
-        [SerializeField] private Transform slotContainer;
+        [SerializeField] private Transform inventorySlotContainer;
+        [SerializeField] private Transform hotbarSlotContainer;
 
         private List<ItemSlotUI> uiSlots = new List<ItemSlotUI>();
 
@@ -40,11 +42,23 @@ namespace Prototype_S
             //grab a reference to the instantiated player inventory
             ItemContainerDefinition containerDefinition = playerInventory.Inventory;
             int containerSize = containerDefinition.ContainerSize;
-            
+
             //create an itemslot gameObject for each slot
             for (int i = 0; i < containerSize; i++)
             {
-                GameObject itemSlotGo = Instantiate(itemSlotUIPrefab, slotContainer);
+                
+                //assign the first 10 slots to the hotbar UI
+                GameObject itemSlotGo;
+                
+                if (i < 10)
+                { 
+                    itemSlotGo = Instantiate(itemSlotUIPrefab, hotbarSlotContainer);
+                }
+                else
+                {
+                    itemSlotGo = Instantiate(itemSlotUIPrefab, inventorySlotContainer);
+                }
+                
                 ItemSlotUI itemSlotUI = itemSlotGo.GetComponent<ItemSlotUI>();
                 
                 //make the first itemslot selected on instantiation/by default

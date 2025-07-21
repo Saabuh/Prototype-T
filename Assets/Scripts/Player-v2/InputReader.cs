@@ -42,12 +42,18 @@ namespace Prototype_S
 
         private void CheckHotbarInput()
         {
-            for (int i = 0; i <= 9; i++)
+            for (int i = 1; i <= 9; i++)
             {
                 if (Input.GetKeyDown(KeyCode.Alpha0 + i))
                 {
-                    onHotbarSelect.Raise(i);
+                    onHotbarSelect.Raise(i - 1);
                 }
+
+            }
+            
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                onHotbarSelect.Raise(9);
             }
         }
 
