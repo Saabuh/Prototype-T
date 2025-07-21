@@ -5,7 +5,7 @@ namespace Prototype_S
 {
     
     /// <summary>
-    /// Responsible for PlayerInventory Behaviour
+    /// Responsible for PlayerInventory Behaviour/Logic
     /// </summary>
     public class PlayerInventory : MonoBehaviour
     {
@@ -38,6 +38,10 @@ namespace Prototype_S
             Inventory.OnDestroyCleanup();
         }
 
+        /// <summary>
+        /// updates the selected slot data for a player
+        /// </summary>
+        /// <param name="index"></param>
         public void SelectSlotIndex(int index)
         {
             selectedSlotIndex = index;
