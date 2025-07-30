@@ -65,7 +65,6 @@ namespace Prototype_S
 
         public void Teleport(MapData mapData)
         {
-            // transform.position = new Vector3(mapData.mapWidth / 2, mapData.mapHeight / 2, 0);
             
             playerRb.position = new Vector2(mapData.mapWidth / 2, mapData.mapHeight / 2);
         }
@@ -74,7 +73,16 @@ namespace Prototype_S
         {
             
             Log.Info("Handling use");
-            PlayerInventory.GetInventorySlot();
+            
+            ItemData item = PlayerInventory.SelectedItem;
+
+            if (item == null || item.ItemAction == null)
+            {
+                Log.Info("No item selected or no item action defined");
+                return;
+            }
+            
+            item.ItemAction.StartUse(this.gameObject, item);
             
             
             // //determine aim direction

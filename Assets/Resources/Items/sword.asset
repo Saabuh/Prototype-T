@@ -19,6 +19,7 @@ MonoBehaviour:
   maxStack: 1
   rarity: Common
   description: A shoddy sword
+  itemAction: {fileID: 11400000, guid: c33703fa8b5a1985a955b1b92601ee27, type: 2}
   manaCost: 0
   cooldown: 1
   damage: 50

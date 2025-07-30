@@ -10,14 +10,17 @@ namespace Prototype_S
     public class PlayerInventory : MonoBehaviour
     {
 
+        //events
+        [SerializeField] private IntegerEvent onSelectedSlotChanged;
+        
         //fields
         [Tooltip("Template used to create new inventory")]
         [SerializeField] private ItemContainerDefinition containerTemplate;
         public ItemContainerDefinition Inventory { get; private set; }
         public int selectedSlotIndex = 0;
         
-        //events
-        [SerializeField] private IntegerEvent onSelectedSlotChanged;
+        //getter properties
+        public ItemData SelectedItem => GetInventorySlot().itemData;
         
         //used purely for debugging/ spawning items
         [Header("reference to instantiated Inventory")] [SerializeField]
