@@ -6,17 +6,17 @@ namespace Prototype_S
     public class MeleeStabAction : ItemAction
     {
         [SerializeField] private int stabDistance;
-        public override void StartUse(GameObject user, ItemData itemData)
+        public override void StartUse(GameObject user, ItemData itemData, Vector2 mousePosition)
         {
             Log.Info("Performing Melee Stab Action with an distance of " + stabDistance);
         }
 
-        public override void OnUse(GameObject user, ItemData itemData)
+        public override void OnUse(GameObject user, ItemData itemData, Vector2 mousePosition)
         {
             throw new System.NotImplementedException();
         }
 
-        public override void EndUse(GameObject user, ItemData itemData)
+        public override void EndUse(GameObject user, ItemData itemData, Vector2 mousePosition)
         {
             throw new System.NotImplementedException();
         }

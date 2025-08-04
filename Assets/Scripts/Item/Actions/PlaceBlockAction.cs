@@ -2,16 +2,15 @@ using UnityEngine;
 
 namespace Prototype_S
 {
-    [CreateAssetMenu(fileName = "New Melee Swing Action", menuName = "Actions/Melee Swing Action")]
-    public class MeleeSwingAction : ItemAction
+    [CreateAssetMenu(fileName = "New Place Block Action", menuName = "Actions/Place Block Action")]
+    public class PlaceBlockAction : ItemAction
     {
 
-        [SerializeField] private int swingArc = 90;
-        [SerializeField] private int swingDistance = 15;
+        [SerializeField] private int placeBlockMaxRange = 5;
 
         public override void StartUse(GameObject user, ItemData itemData, Vector2 mousePosition)
         {
-            Log.Info("Performing Melee Swing Action with an Arc of " + swingArc + " and swing distance of " + swingDistance);
+            Log.Info("Performing Place Block Action with a max range of " + placeBlockMaxRange);
             Log.Info("Performing at mouse position x: " + mousePosition.x + " y: " + mousePosition.y);
         }
 

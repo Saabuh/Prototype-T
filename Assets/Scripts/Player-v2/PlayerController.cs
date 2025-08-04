@@ -60,7 +60,6 @@ namespace Prototype_S
             Vector2 movement = new Vector2(playerInput.Horizontal, playerInput.Vertical);
 
             playerRb.linearVelocity = movement * playerSpeed;
-            // transform.Translate(movement * (playerSpeed * Time.deltaTime));
         }
 
         public void Teleport(MapData mapData)
@@ -82,7 +81,7 @@ namespace Prototype_S
                 return;
             }
             
-            item.ItemAction.StartUse(this.gameObject, item);
+            item.ItemAction.StartUse(this.gameObject, item, mousePosition);
             
             
             // //determine aim direction

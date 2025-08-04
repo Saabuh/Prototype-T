@@ -18,14 +18,17 @@ so does the input reader temporarily.
 - [x] [Visual duplicate item bug with inventory toggling](https://github.com/Saabuh/Prototype-T/issues/2)
 
 # Worklog History
-
-## 01-08-2025
-- [ ] prevent double inputs, such as clickin performing attacking/pressing ui in game at the same time
-- [ ] implement item use logic, Action Strategies for different items (mining, weapon, block)
+## 04-08-2025
+- [ ] refactor inventory to hold item instances instead of itemData scriptableObjects (scriptableObjects should be immutable data containers, thus not a runtime asset that is modified in game)
+- [x] download sample item assets 
 - [ ] implement basic enemy spawning and hit registers
 - [ ] add collidable walls, spawned using procedural generation
 - [ ] show short form tooltip when inventory ui is not toggled
     - have 2 tooltip datas, one short form one long form, display based on onInventoryToggle event
+
+## 01-08-2025
+- [x] prevent double inputs, such as clickin performing attacking/pressing ui in game at the same time
+- [x] implement item use logic, Action Strategies for different items (mining, weapon, block)
 
 ## 21-07-2025
 - [x] Replace onInventoryToggle event handler with custom event handler
