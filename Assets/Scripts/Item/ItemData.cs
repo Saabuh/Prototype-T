@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Prototype_S
 {
+    /// <summary>
+    /// class representing an immutable data container for base item data
+    /// </summary>
     public abstract class ItemData : ScriptableObject
    {
        [Header("Basic Info")] 

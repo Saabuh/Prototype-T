@@ -85,7 +85,7 @@ namespace Prototype_S.UI
         {
             isHovering = true;
             onItemSlotHoverEnter.Raise(itemSlotUI.ItemSlot);
-            Log.Info(itemSlotUI.ItemSlot.itemData);
+            // Log.Info(itemSlotUI.ItemSlot.itemData);
             Log.Info("Raising hover enter event.");
         }
 
