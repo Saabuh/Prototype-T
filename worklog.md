@@ -11,14 +11,14 @@ so does the input reader temporarily.
 
 # log
 
-## 05-08-2025
-- [ ] refactor inventory to hold item instances instead of itemData scriptableObjects (scriptableObjects should be immutable data containers, thus not a runtime asset that is modified in game)
+## 07-08-2025
+- [x] refactor inventory to hold item instances instead of itemData scriptableObjects (scriptableObjects should be immutable data containers, thus not a runtime asset that is modified in game)
     - not as much work as it sounds like, most logic is based around itemslots, not the itemData. Can just replace itemData with iteminstance and fix itemcontainer/ui logic
 - [ ] add collidable walls, spawned using procedural generation
+- [ ] implement basic enemy spawning and hit registers
 
 ## 04-08-2025
 - [x] download sample item assets 
-- [ ] implement basic enemy spawning and hit registers
 - [ ] show short form tooltip when inventory ui is not toggled
     - have 2 tooltip datas, one short form one long form, display based on onInventoryToggle event
 
