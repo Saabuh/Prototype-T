@@ -29,12 +29,12 @@ namespace Prototype_S
 
             if (Input.GetButtonDown("Fire1"))
             {
-                //check if we clicked on a ui element
-                if (EventSystem.current.IsPointerOverGameObject())
+                //check if we clicked on a ui element or if we're holding an item
+                if (EventSystem.current.IsPointerOverGameObject() || DragStateManager.Instance.IsHolding)
                 {
                     Log.Info("clicked on ui element");
                     return;
-                }
+                } 
                 
                 Use(); 
             }
