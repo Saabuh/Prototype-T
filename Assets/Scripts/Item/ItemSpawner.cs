@@ -13,7 +13,7 @@ namespace Prototype_S
             _worldItemPrefab = prefab;
         }
 
-        public static void SpawnItem(Vector3 position, ItemData item , int quantity, float pickupDelay = 1f)
+        public static void SpawnItem(Vector3 position, ItemInstance itemInstance , int quantity, float pickupDelay = 1f)
         {
             
              // --- Safety Checks ---
@@ -22,7 +22,7 @@ namespace Prototype_S
                 Log.Info("Cannot spawn item because the ItemInWorld prefab was not loaded.");
             }
             
-            if (item == null)
+            if (itemInstance == null)
             {
                 Log.Info("Tried to spawn an item with null ItemData.");
             }
@@ -35,8 +35,8 @@ namespace Prototype_S
             SpriteRenderer spriteRenderer = itemObject.GetComponent<SpriteRenderer>();
             
             //populate prefab
-            itemEntity.Initialize(item, quantity, pickupDelay);
-            spriteRenderer.sprite = item.Icon;
+            itemEntity.Initialize(itemInstance, quantity, pickupDelay);
+            spriteRenderer.sprite = itemInstance.itemData.Icon;
 
         }
 

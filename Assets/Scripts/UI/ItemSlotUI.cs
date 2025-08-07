@@ -45,7 +45,7 @@ namespace Prototype_S
                 itemSlotImage.color = new Color(0f, 0f, 0f, 0.8f);
             }
             
-            if (ItemSlot.itemData == null)
+            if (ItemSlot.itemInstance == null)
             {
                 EnableSlotUI(false);
                 return;
@@ -53,7 +53,7 @@ namespace Prototype_S
 
             EnableSlotUI(true);
 
-            itemIconImage.sprite = ItemSlot.itemData.Icon;
+            itemIconImage.sprite = ItemSlot.itemInstance.itemData.Icon;
             itemQuantityText.text = ItemSlot.quantity > 1 ? ItemSlot.quantity.ToString() : "";
         }
 

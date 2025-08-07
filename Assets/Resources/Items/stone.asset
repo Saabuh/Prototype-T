@@ -19,3 +19,4 @@ MonoBehaviour:
   maxStack: 5
   rarity: Common
   description: A random stone
+  itemAction: {fileID: 11400000, guid: e4b244238f746ab2e97eb8bd9e0e40bc, type: 2}

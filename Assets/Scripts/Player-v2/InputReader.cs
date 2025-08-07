@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Prototype_S
 {
@@ -28,7 +29,14 @@ namespace Prototype_S
 
             if (Input.GetButtonDown("Fire1"))
             {
-               Use(); 
+                //check if we clicked on a ui element
+                if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    Log.Info("clicked on ui element");
+                    return;
+                }
+                
+                Use(); 
             }
 
             //refactor

@@ -10,14 +10,17 @@ namespace Prototype_S
     public class PlayerInventory : MonoBehaviour
     {
 
+        //events
+        [SerializeField] private IntegerEvent onSelectedSlotChanged;
+        
         //fields
         [Tooltip("Template used to create new inventory")]
         [SerializeField] private ItemContainerDefinition containerTemplate;
         public ItemContainerDefinition Inventory { get; private set; }
         public int selectedSlotIndex = 0;
         
-        //events
-        [SerializeField] private IntegerEvent onSelectedSlotChanged;
+        //getter properties
+        public ItemInstance SelectedItem => GetInventorySlot().itemInstance;
         
         //used purely for debugging/ spawning items
         [Header("reference to instantiated Inventory")] [SerializeField]
@@ -54,13 +57,13 @@ namespace Prototype_S
         {
             ItemSlot itemSlot = Inventory.ItemContainer.GetSlotByIndex(selectedSlotIndex);
 
-            if (itemSlot.itemData == null)
+            if (itemSlot.itemInstance == null)
             {
                 Log.Info("item slot data is null");
             }
             else
             {
-                Log.Info(itemSlot.itemData.Name);
+                Log.Info(itemSlot.itemInstance.itemData.Name);
             }
 
             return itemSlot;

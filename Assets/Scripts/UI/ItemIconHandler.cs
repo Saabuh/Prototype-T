@@ -69,7 +69,7 @@ namespace Prototype_S.UI
             if (!targetFound)
             {
                 ItemSpawner.SpawnItem(PlayerController.LocalPlayerInstance.transform.position,
-                    itemSlotUI.ItemSlot.itemData, itemSlotUI.ItemSlot.quantity);
+                    itemSlotUI.ItemSlot.itemInstance, itemSlotUI.ItemSlot.quantity);
 
                 // Reset item slot after spawning creating item entity
                 itemSlotUI.Inventory.RemoveAt(itemSlotUI.SlotIndex);
@@ -85,7 +85,7 @@ namespace Prototype_S.UI
         {
             isHovering = true;
             onItemSlotHoverEnter.Raise(itemSlotUI.ItemSlot);
-            Log.Info(itemSlotUI.ItemSlot.itemData);
+            // Log.Info(itemSlotUI.ItemSlot.itemData);
             Log.Info("Raising hover enter event.");
         }
 

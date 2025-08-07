@@ -98,8 +98,8 @@ namespace Prototype_S
         {
             StringBuilder builder = new StringBuilder();
 
-            builder.Append("<size=24>").Append(item.itemData.name).Append("</size>\n");
-            builder.Append(item.itemData.GetItemDisplayText());
+            builder.Append("<size=24>").Append(item.itemInstance.itemData.name).Append("</size>\n");
+            builder.Append(item.itemInstance.itemData.GetItemDisplayText());
 
             tooltipText.text = builder.ToString();
         }

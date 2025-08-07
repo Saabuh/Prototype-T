@@ -17,11 +17,13 @@ namespace Prototype_S
         {
             for (int i = 0; i < itemSlots.Length; i++)
             {
-                if (itemSlots[i].itemData != null)
+                if (itemSlots[i].itemInstance != null)
                 {
-                    if (itemSlots[i].itemData == itemSlot.itemData)
+                    Log.Info("Item 1: " + itemSlots[i].itemInstance.itemData);
+                    Log.Info("Item 2: " + itemSlot.itemInstance.itemData);
+                    if (itemSlots[i].itemInstance.itemData == itemSlot.itemInstance.itemData)
                     {
-                        int slotRemainingSpace = itemSlots[i].itemData.MaxStack - itemSlots[i].quantity;
+                        int slotRemainingSpace = itemSlots[i].itemInstance.itemData.MaxStack - itemSlots[i].quantity;
 
                         if (itemSlot.quantity <= slotRemainingSpace)
                         {
@@ -45,28 +47,36 @@ namespace Prototype_S
 
             for (int i = 0; i < itemSlots.Length; i++)
             {
-                if (itemSlots[i].itemData == null)
+                if (itemSlots[i].itemInstance == null)
                 {
-                    if (itemSlot.quantity <= itemSlot.itemData.MaxStack)
+                    if (itemSlot.quantity <= itemSlot.itemInstance.itemData.MaxStack)
                     {
                         itemSlots[i] = itemSlot;
-
                         itemSlot.quantity = 0;
+                        break;
 
-                        OnItemsUpdated.Invoke();
-
-                        return itemSlot;
+                        // OnItemsUpdated.Invoke();
+                        // return itemSlot;
                     }
                     else
                     {
-                        itemSlots[i] = new ItemSlot(itemSlot.itemData, itemSlot.itemData.MaxStack);
+                        itemSlots[i] = new ItemSlot(itemSlot.itemInstance, itemSlot.itemInstance.itemData.MaxStack);
 
-                        itemSlot.quantity -= itemSlot.itemData.MaxStack;
+                        itemSlot.quantity -= itemSlot.itemInstance.itemData.MaxStack;
                     }
                 }
             }
 
             OnItemsUpdated.Invoke();
+            
+            //debug
+            for (int i = 0; i < itemSlots.Length; i++)
+            {
+                if (itemSlots[i].itemInstance != null)
+                {
+                    Log.Info(itemSlots[i].itemInstance.itemData.Name);
+                }
+            }
 
             return itemSlot;
         }
@@ -89,11 +99,11 @@ namespace Prototype_S
 
             if (firstSlot == secondSlot) { return; }
 
-            if (secondSlot.itemData != null)
+            if (secondSlot.itemInstance != null)
             {
-                if (firstSlot.itemData == secondSlot.itemData)
+                if (firstSlot.itemInstance.itemData == secondSlot.itemInstance.itemData)
                 {
-                    int secondSlotRemainingSpace = secondSlot.itemData.MaxStack - secondSlot.quantity;
+                    int secondSlotRemainingSpace = secondSlot.itemInstance.itemData.MaxStack - secondSlot.quantity;
 
                     if (firstSlot.quantity <= secondSlotRemainingSpace)
                     {
@@ -118,7 +128,7 @@ namespace Prototype_S
         {
             foreach (ItemSlot itemSlot in itemSlots)
             {
-                if (itemSlot.itemData == item)
+                if (itemSlot.itemInstance.itemData == item)
                 {
                     return true;
                 }
@@ -132,7 +142,7 @@ namespace Prototype_S
 
             foreach (ItemSlot itemSlot in itemSlots)
             {
-                if (itemSlot.itemData == item)
+                if (itemSlot.itemInstance.itemData == item)
                 {
                     totalQuantity += itemSlot.quantity;
                 }

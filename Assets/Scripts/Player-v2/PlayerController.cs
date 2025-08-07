@@ -60,12 +60,10 @@ namespace Prototype_S
             Vector2 movement = new Vector2(playerInput.Horizontal, playerInput.Vertical);
 
             playerRb.linearVelocity = movement * playerSpeed;
-            // transform.Translate(movement * (playerSpeed * Time.deltaTime));
         }
 
         public void Teleport(MapData mapData)
         {
-            // transform.position = new Vector3(mapData.mapWidth / 2, mapData.mapHeight / 2, 0);
             
             playerRb.position = new Vector2(mapData.mapWidth / 2, mapData.mapHeight / 2);
         }
@@ -74,7 +72,16 @@ namespace Prototype_S
         {
             
             Log.Info("Handling use");
-            PlayerInventory.GetInventorySlot();
+            
+            ItemInstance item = PlayerInventory.SelectedItem;
+
+            if (item == null || item.itemData.ItemAction == null)
+            {
+                Log.Info("No item selected or no item action defined");
+                return;
+            }
+            
+            item.itemData.ItemAction.StartUse(this.gameObject, item.itemData, mousePosition);
             
             
             // //determine aim direction
