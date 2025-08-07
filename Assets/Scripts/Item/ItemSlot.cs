@@ -6,12 +6,12 @@ namespace Prototype_S
     [Serializable]
     public struct ItemSlot
     {
-        public ItemData itemData;
+        public ItemInstance itemInstance;
         public int quantity;
 
-        public ItemSlot(ItemData itemData, int quantity)
+        public ItemSlot(ItemInstance itemInstance, int quantity)
         {
-            this.itemData = itemData;
+            this.itemInstance = itemInstance;
             this.quantity = quantity;
         }
         public static bool operator ==(ItemSlot a, ItemSlot b) { return a.Equals(b); }

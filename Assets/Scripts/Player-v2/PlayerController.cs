@@ -73,15 +73,15 @@ namespace Prototype_S
             
             Log.Info("Handling use");
             
-            ItemData item = PlayerInventory.SelectedItem;
+            ItemInstance item = PlayerInventory.SelectedItem;
 
-            if (item == null || item.ItemAction == null)
+            if (item == null || item.itemData.ItemAction == null)
             {
                 Log.Info("No item selected or no item action defined");
                 return;
             }
             
-            item.ItemAction.StartUse(this.gameObject, item, mousePosition);
+            item.itemData.ItemAction.StartUse(this.gameObject, item.itemData, mousePosition);
             
             
             // //determine aim direction

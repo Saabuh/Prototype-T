@@ -1,10 +1,19 @@
 namespace Prototype_S
 {
     /// <summary>
-    /// class representing dynamic, instance-specific runtime data of an item
+    /// Class representing the dyanmic data of a runtime item in the world.
     /// </summary>
+    [System.Serializable]
     public class ItemInstance
     {
-        
+        //base, static item data the instance is based off of 
+        public ItemData itemData;
+        // ... other dynamic data (durability, upgrades)
+
+        public ItemInstance(ItemData itemData)
+        {
+            this.itemData = itemData;
+        }
     }
 }
+

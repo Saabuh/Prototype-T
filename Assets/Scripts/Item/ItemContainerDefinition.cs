@@ -22,7 +22,11 @@ namespace Prototype_S
         [ContextMenu("Test adding ItemSlot")]
         public void TestAddItemSlot()
         {
-            ItemContainer.AddItem(testItemSlot);
+
+            ItemInstance newItemInstance = new ItemInstance(testItemSlot.itemInstance.itemData);
+            ItemSlot slotToAdd = new ItemSlot(newItemInstance, testItemSlot.quantity);
+            
+            ItemContainer.AddItem(slotToAdd);
         }
 
         public void Initialize()

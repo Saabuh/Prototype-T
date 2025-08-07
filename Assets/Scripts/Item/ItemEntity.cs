@@ -8,7 +8,7 @@ namespace Prototype_S
      */
     public class ItemEntity : MonoBehaviour, IPickupable
     {
-        public ItemData Item { get; private set; }
+        public ItemInstance ItemInstance { get; private set; }
         public int Quantity { get; private set; }
         private float pickUpDelay = 0f;
         private bool canBePickedUp = false;
@@ -17,9 +17,9 @@ namespace Prototype_S
         {
             StartCoroutine(EnablePickupAfterDelay());
         }
-        public void Initialize(ItemData item, int quantity, float pickupDelay) {
+        public void Initialize(ItemInstance itemInstance, int quantity, float pickupDelay) {
             
-            this.Item = item;
+            this.ItemInstance = itemInstance;
             this.Quantity = quantity;
             this.pickUpDelay = pickupDelay;
         }
@@ -37,7 +37,7 @@ namespace Prototype_S
             if (itemContainerDefinition != null)
             {
                 //create new itemSlot to add
-                ItemSlot itemSlotToAdd = new ItemSlot(Item, Quantity);
+                ItemSlot itemSlotToAdd = new ItemSlot(ItemInstance, Quantity);
                 
                 //Add to inventory
                 itemContainerDefinition.ItemContainer.AddItem(itemSlotToAdd);
