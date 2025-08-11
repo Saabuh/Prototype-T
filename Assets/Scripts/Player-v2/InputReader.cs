@@ -10,7 +10,7 @@ namespace Prototype_S
         //events
         [Header("Custom Event References")]
         [SerializeField] private IntegerEvent onHotbarSelect;
-        [SerializeField] private Vector2Event onLeftClick;
+        [SerializeField] private Vector3Event onLeftClick;
         [SerializeField] private VoidEvent onInventoryUIToggle;
 
         //properties
@@ -32,7 +32,7 @@ namespace Prototype_S
                 //check if we clicked on a ui element or if we're holding an item
                 if (EventSystem.current.IsPointerOverGameObject() || DragStateManager.Instance.IsHolding)
                 {
-                    Log.Info("clicked on ui element");
+                    Log.Info("clicked on ui element or in holding state.");
                     return;
                 } 
                 
@@ -68,7 +68,7 @@ namespace Prototype_S
         void Use()
         {
             //get mouse position of click and convert to world point
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
             onLeftClick.Raise(mousePosition);
         }

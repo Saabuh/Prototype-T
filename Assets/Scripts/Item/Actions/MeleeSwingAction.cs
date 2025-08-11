@@ -9,18 +9,18 @@ namespace Prototype_S
         [SerializeField] private int swingArc = 90;
         [SerializeField] private int swingDistance = 15;
 
-        public override void StartUse(GameObject user, ItemData itemData, Vector2 mousePosition)
+        public override void StartUse(GameObject user, ItemInstance itemInstance, Vector3 mousePosition)
         {
             Log.Info("Performing Melee Swing Action with an Arc of " + swingArc + " and swing distance of " + swingDistance);
             Log.Info("Performing at mouse position x: " + mousePosition.x + " y: " + mousePosition.y);
         }
 
-        public override void OnUse(GameObject user, ItemData itemData, Vector2 mousePosition)
+        public override void OnUse(GameObject user, ItemInstance itemInstance, Vector3 mousePosition)
         {
             throw new System.NotImplementedException();
         }
 
-        public override void EndUse(GameObject user, ItemData itemData, Vector2 mousePosition)
+        public override void EndUse(GameObject user, ItemInstance itemInstance, Vector3 mousePosition)
         {
             throw new System.NotImplementedException();
         }

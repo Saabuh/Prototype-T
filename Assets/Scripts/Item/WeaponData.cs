@@ -12,12 +12,14 @@ namespace Prototype_S
         [Header("Weapon Info")]
         [SerializeField] private int manaCost = 0;
         [SerializeField] private float cooldown = 0;
-        [SerializeField] private float damage = 0;
+        [SerializeField] private float baseDamage = 0;
+        [SerializeField] private int baseMiningDamage = 0;
         [SerializeField] private IAttackStrategy _attackStrategy;
         [SerializeField] private GameObject projectilePrefab;
 
-        //getters
+        //getters properties
         public IAttackStrategy AttackStrategy => _attackStrategy;
+        public int BaseMiningDamage => baseMiningDamage;
 
         public override string GetItemDisplayText()
         {

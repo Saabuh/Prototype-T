@@ -68,7 +68,7 @@ namespace Prototype_S
             playerRb.position = new Vector2(mapData.mapWidth / 2, mapData.mapHeight / 2);
         }
         
-        public void HandleUse(Vector2 mousePosition)
+        public void HandleUse(Vector3 mousePosition)
         {
             
             Log.Info("Handling use");
@@ -81,7 +81,7 @@ namespace Prototype_S
                 return;
             }
             
-            item.itemData.ItemAction.StartUse(this.gameObject, item.itemData, mousePosition);
+            item.itemData.ItemAction.StartUse(this.gameObject, item, mousePosition);
             
             
             // //determine aim direction

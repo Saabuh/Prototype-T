@@ -14,6 +14,15 @@ namespace Prototype_S
         {
             this.itemData = itemData;
         }
+
+        /// <summary>
+        /// calculate dynamic damage data based on itemData and runtime factors (buffs, upgrades)
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        public void CalculateDamage()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
 

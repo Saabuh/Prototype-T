@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Prototype_S
 {
@@ -14,7 +15,8 @@ namespace Prototype_S
        [SerializeField] private int quantity = 1;
        [SerializeField] private int maxStack = 1;
        [SerializeField] private string rarity = "New Rarity";
-       [SerializeField] private string description = "New Item Description";
+       [SerializeField] private string description = "New Item Description"; 
+       [SerializeField] private bool placeable = false;
 
        [Header("Behaviour")] 
        [SerializeField] private ItemAction itemAction;
@@ -28,6 +30,7 @@ namespace Prototype_S
        public string Rarity => rarity;
        public string Description => description;
        public ItemAction ItemAction => itemAction;
+       public bool Placeable => placeable;
 
        public abstract string GetItemDisplayText();
    }

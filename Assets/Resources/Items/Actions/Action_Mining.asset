@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c93ba7f43d79823a86ca75dec8a93a, type: 3}
   m_Name: Action_Mining
   m_EditorClassIdentifier: 
+  DestructibleTilemap: {fileID: 0}
   miningDistance: 5
   miningSpeed: 2
