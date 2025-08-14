@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace Prototype_S
 {
-    [CustomEditor(typeof(BaseMapGenerator), true)]
-    public class MapGeneratorEditor : Editor
+    [CustomEditor(typeof(FoliageGenerator))]
+    public class FoliageGeneratorEditor : Editor
     {
         public override void OnInspectorGUI()
         {
-            BaseMapGenerator mapGen = (BaseMapGenerator) target;
+            FoliageGenerator mapGen = (FoliageGenerator) target;
 
             DrawDefaultInspector();
 
             if (GUILayout.Button("Generate"))
             {
-                mapGen.Generate();
+                mapGen.TreeGenerator();
             }
         }
     }

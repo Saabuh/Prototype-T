@@ -26,7 +26,7 @@ namespace Prototype_S
         }
 
         [ContextMenu("Generate Trees")]
-        private void TreeGenerator()
+        public void TreeGenerator()
         {
             foliageMap.ClearAllTiles();
             float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, treeScale);
@@ -37,7 +37,7 @@ namespace Prototype_S
                 for (int x = 0; x < mapWidth; x++)
                 {
                     float density = Random.Range(0.05f, treeDensity);
-                    if (!isWater(x, y) && !isSand(x, y) && noiseMap[x, y] < density)
+                    if (!MapQuery.Instance.IsTileWater(new Vector3Int(x, y, 0)) && !MapQuery.Instance.IsTileSand(new Vector3Int(x, y, 0)) && noiseMap[x, y] < density)
                     {
                         foliageMap.SetTile(new Vector3Int(x, y, 0), treeTile);
                     }
@@ -49,17 +49,6 @@ namespace Prototype_S
         private void RemoveTrees()
         {
             foliageMap.ClearAllTiles();
-        }
-        
-
-        private bool isWater(int x, int y)
-        {
-            return (terrainMap.GetTile(new Vector3Int(x, y, 0)) == waterTile);
-        }
-
-        private bool isSand(int x, int y)
-        {
-            return (terrainMap.GetTile(new Vector3Int(x, y, 0)) == sandTile);
         }
     }
 }

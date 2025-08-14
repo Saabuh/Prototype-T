@@ -8,14 +8,20 @@
 so does the input reader temporarily.
 - [x] [dragging an item and then closing the ui bugs out, item freezes on current mouse position on next inventory toggle](https://github.com/Saabuh/Prototype-T/issues/1)
 - [x] [Visual duplicate item bug with inventory toggling](https://github.com/Saabuh/Prototype-T/issues/2)
+- [ ] if playerspeed is too high, they can run through walls
 
 # log
 ## 11-08-2025
 - [x] implement miningAction to destroy spawned tiles using placeblockAction
-- [ ] add collidable walls, spawned using procedural generation
-- [ ] implement basic enemy spawning and hit registers to enemy/walls
+- [x] add collidable walls, spawned using procedural generation
+- [x] refactor water tile checker into a new helper class
 - [ ] add basic item animation and hit register distances
+- [ ] if playerspeed is too high, they can run through walls
+- [ ] implement basic enemy spawning and hit registers to enemies
 - [ ] add enemy loot tables
+- [ ] add rule tileset
+- [ ] add method to DestructibleTileManager for adding tiles, remove implementations from mapgenerators
+
 
 ## 07-08-2025
 

@@ -11,7 +11,7 @@ namespace Prototype_S
         public static PlayerController LocalPlayerInstance { get; private set; }
         
         //fields
-        public float playerSpeed = 5.0f;
+        public float playerSpeed = 15.0f;
         
         // This boolean would be set by your networking system (e.g., Mirror, Netcode).
         // For testing, you can set it manually in the Inspector.
@@ -64,7 +64,6 @@ namespace Prototype_S
 
         public void Teleport(MapData mapData)
         {
-            
             playerRb.position = new Vector2(mapData.mapWidth / 2, mapData.mapHeight / 2);
         }
         
