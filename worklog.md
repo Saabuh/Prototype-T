@@ -11,6 +11,9 @@ so does the input reader temporarily.
 - [ ] if playerspeed is too high, they can run through walls
 
 # log
+## 14-08-2025
+- [ ] refactor everything for multiplayer
+
 ## 11-08-2025
 - [x] implement miningAction to destroy spawned tiles using placeblockAction
 - [x] add collidable walls, spawned using procedural generation
