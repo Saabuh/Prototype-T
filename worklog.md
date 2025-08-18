@@ -13,6 +13,7 @@ so does the input reader temporarily.
 # log
 ## 14-08-2025
 - [ ] refactor everything for multiplayer
+- [ ] work on client side prediction and reconciliation to solve delay/lag issues for movement, animations, etc.
 
 ## 11-08-2025
 - [x] implement miningAction to destroy spawned tiles using placeblockAction
