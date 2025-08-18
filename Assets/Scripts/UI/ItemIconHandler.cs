@@ -68,17 +68,12 @@ namespace Prototype_S.UI
 
             if (!targetFound)
             {
-                ItemSpawner.SpawnItem(PlayerController.LocalPlayerInstance.transform.position,
+                ItemSpawner.SpawnItem(PlayerController.LocalInstance.transform.position,
                     itemSlotUI.ItemSlot.itemInstance, itemSlotUI.ItemSlot.quantity);
 
                 // Reset item slot after spawning creating item entity
                 itemSlotUI.Inventory.RemoveAt(itemSlotUI.SlotIndex);
             } 
-            else
-            {
-                //manually trigger OnPointerEnter event, swap the data, not the itemslot? in case it gets buggy
-                // HandlePointerEnter();
-            }
         }
 
         public void OnPointerEnter(PointerEventData eventData)

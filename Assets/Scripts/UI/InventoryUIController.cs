@@ -22,16 +22,29 @@ namespace Prototype_S
 
         private List<ItemSlotUI> uiSlots = new List<ItemSlotUI>();
 
-        private void Start()
+        private void Awake()
         {
+            PlayerController.OnLocalPlayerConnected += InitializeInventoryUI;
+        }
 
-            if (playerInventory == null)
+        private void OnDestroy()
+        {
+            PlayerController.OnLocalPlayerConnected -= InitializeInventoryUI;
+        }
+
+        private void InitializeInventoryUI(PlayerController playerController)
+        {
+            
+            if (playerController.PlayerInventory == null)
             {
                 Log.Info("PlayerInventory is not yet defined");
                 return;
             }
+
+            playerInventory = playerController.PlayerInventory;
             
             CreateInventorySlots();
+            
         }
 
         /// <summary>

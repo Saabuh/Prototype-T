@@ -42,6 +42,7 @@ namespace Prototype_S
             //refactor
             if (Input.GetKeyDown(KeyCode.I))
             {
+                Log.Info("clicked i");
                 onInventoryUIToggle.Raise();
             }
 

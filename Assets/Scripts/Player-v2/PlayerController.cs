@@ -1,4 +1,6 @@
+using System;
 using Item;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Prototype_S
@@ -6,17 +8,16 @@ namespace Prototype_S
     /**
      * Responsible for managing anything involving player/user interaction (mouse clicks, movement, etc.)
      */
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : NetworkBehaviour
     {
-        public static PlayerController LocalPlayerInstance { get; private set; }
+        //static instance 
+        public static PlayerController LocalInstance { get; private set; }
+        
+        //events
+        public static event Action<PlayerController> OnLocalPlayerConnected;
         
         //fields
         public float playerSpeed = 15.0f;
-        
-        // This boolean would be set by your networking system (e.g., Mirror, Netcode).
-        // For testing, you can set it manually in the Inspector.
-        [Tooltip("Is this the player controlled by this computer?")]
-        public bool isLocalPlayer = true;
         
         //facade properties
         private PlayerInventory playerInventory;
@@ -27,38 +28,72 @@ namespace Prototype_S
         //getter properties
         public PlayerInventory PlayerInventory => playerInventory;
 
-        void Awake()
+        public override void OnNetworkSpawn()
         {
+            base.OnNetworkSpawn();
 
-            //check if the player we are trying to create is the one we should control
-            if (isLocalPlayer)
+            //check if we are the owner of this gameObject on network spawn
+            if (IsOwner)
             {
+                
+                Log.Info("Player Connected.");
+                
+                LocalInstance = this;
+                
+                //set camera follow
+                CameraController cameraController = Camera.main.GetComponent<CameraController>();
 
-                //check if an instance of the player we are to control already exists
-                if (LocalPlayerInstance != null)
+                if (cameraController != null)
                 {
-                    Destroy(this.gameObject);
-                    return;
+                    cameraController.player = this.transform;
+                }
+                else
+                {
+                    Log.Info("camera controller was not found");
                 }
                 
-                LocalPlayerInstance = this;
+                //invoke player spawn event
+                OnLocalPlayerConnected?.Invoke(this);
+            }
+            else
+            {
+                //disable input if we are not the owner of this gameObject
+                GetComponent<InputReader>().enabled = false;
             }
             
+            
+        }
+
+        void Awake()
+        {
             //initialize facade references
-            playerInput = GetComponent<InputReader>();
             playerRb = GetComponent<Rigidbody2D>();
+            playerInput = GetComponent<InputReader>();
             playerInventory = GetComponent<PlayerInventory>();
         }
 
-        void Update()
+        void FixedUpdate()
         {
+
+            if (!IsOwner) return;
+            
             Move();
         }
 
         private void Move()
         {
+            //read player input, apply on clientside
             Vector2 movement = new Vector2(playerInput.Horizontal, playerInput.Vertical);
+            playerRb.linearVelocity = movement * playerSpeed;
+            
+            //apply on server side to allow synchronization and correction afterwards
+            MoveServerRpc(movement); 
 
+        }
+
+        [ServerRpc]
+        private void MoveServerRpc(Vector2 movement)
+        {
             playerRb.linearVelocity = movement * playerSpeed;
         }
 
