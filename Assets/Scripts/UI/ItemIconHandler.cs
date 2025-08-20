@@ -68,11 +68,11 @@ namespace Prototype_S.UI
 
             if (!targetFound)
             {
-                ItemSpawner.SpawnItem(PlayerController.LocalInstance.transform.position,
-                    itemSlotUI.ItemSlot.itemInstance, itemSlotUI.ItemSlot.quantity);
-
-                // Reset item slot after spawning creating item entity
-                itemSlotUI.Inventory.RemoveAt(itemSlotUI.SlotIndex);
+                // ItemSpawner.SpawnItem(PlayerController.LocalInstance.transform.position,
+                //     itemSlotUI.ItemSlot.itemInstance, itemSlotUI.ItemSlot.quantity);
+                //
+                // // Reset item slot after spawning creating item entity
+                // itemSlotUI.Inventory.RemoveAt(itemSlotUI.SlotIndex);
             } 
         }
 

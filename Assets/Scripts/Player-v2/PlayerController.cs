@@ -102,29 +102,29 @@ namespace Prototype_S
             playerRb.position = new Vector2(mapData.mapWidth / 2, mapData.mapHeight / 2);
         }
         
-        public void HandleUse(Vector3 mousePosition)
-        {
-            
-            Log.Info("Handling use");
-            
-            ItemInstance item = PlayerInventory.SelectedItem;
-
-            if (item == null || item.itemData.ItemAction == null)
-            {
-                Log.Info("No item selected or no item action defined");
-                return;
-            }
-            
-            item.itemData.ItemAction.StartUse(this.gameObject, item, mousePosition);
-            
-            
-            // //determine aim direction
-            // Vector2 direction = (mousePosition - (Vector2)player.transform.position).normalized;
-            //
-            // GameObject projectile =
-            //     Instantiate(player.projectilePrefab, player.transform.position, Quaternion.identity);
-            //
-            // projectile.GetComponent<Projectile>().Initialize(direction);
-        }
+        // public void HandleUse(Vector3 mousePosition)
+        // {
+        //     
+        //     Log.Info("Handling use");
+        //     
+        //     ItemInstance item = PlayerInventory.SelectedItem;
+        //
+        //     if (item == null || item.itemData.ItemAction == null)
+        //     {
+        //         Log.Info("No item selected or no item action defined");
+        //         return;
+        //     }
+        //     
+        //     item.itemData.ItemAction.StartUse(this.gameObject, item, mousePosition);
+        //     
+        //     
+        //     // //determine aim direction
+        //     // Vector2 direction = (mousePosition - (Vector2)player.transform.position).normalized;
+        //     //
+        //     // GameObject projectile =
+        //     //     Instantiate(player.projectilePrefab, player.transform.position, Quaternion.identity);
+        //     //
+        //     // projectile.GetComponent<Projectile>().Initialize(direction);
+        // }
     }
 }

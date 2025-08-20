@@ -96,12 +96,12 @@ namespace Prototype_S
 
         public void PopulateTooltipInfo(ItemSlot item)
         {
-            StringBuilder builder = new StringBuilder();
-
-            builder.Append("<size=24>").Append(item.itemInstance.itemData.name).Append("</size>\n");
-            builder.Append(item.itemInstance.itemData.GetItemDisplayText());
-
-            tooltipText.text = builder.ToString();
+            // StringBuilder builder = new StringBuilder();
+            //
+            // builder.Append("<size=24>").Append(item.itemInstance.itemData.name).Append("</size>\n");
+            // builder.Append(item.itemInstance.itemData.GetItemDisplayText());
+            //
+            // tooltipText.text = builder.ToString();
         }
         
     }

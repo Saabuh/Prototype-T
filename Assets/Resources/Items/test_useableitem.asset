@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: test_useableitem
   m_EditorClassIdentifier: 
   name: test_tile1
+  itemID: 3
   icon: {fileID: 4430451740536694574, guid: e61d4969389efdb089494cccf3ce740d, type: 3}
   sellPrice: 1
   quantity: 1

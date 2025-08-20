@@ -35,26 +35,26 @@ namespace Prototype_S
 
         public void UpdateSlotUI()
         {
-
-            if (isSelected)
-            {
-                itemSlotImage.color = new Color(1f, 0.5f, 0f, 0.5f);
-            }
-            else
-            {
-                itemSlotImage.color = new Color(0f, 0f, 0f, 0.8f);
-            }
-            
-            if (ItemSlot.itemInstance == null)
-            {
-                EnableSlotUI(false);
-                return;
-            }
-
-            EnableSlotUI(true);
-
-            itemIconImage.sprite = ItemSlot.itemInstance.itemData.Icon;
-            itemQuantityText.text = ItemSlot.quantity > 1 ? ItemSlot.quantity.ToString() : "";
+            //
+            // if (isSelected)
+            // {
+            //     itemSlotImage.color = new Color(1f, 0.5f, 0f, 0.5f);
+            // }
+            // else
+            // {
+            //     itemSlotImage.color = new Color(0f, 0f, 0f, 0.8f);
+            // }
+            //
+            // if (ItemSlot.itemInstance == null)
+            // {
+            //     EnableSlotUI(false);
+            //     return;
+            // }
+            //
+            // EnableSlotUI(true);
+            //
+            // itemIconImage.sprite = ItemSlot.itemInstance.itemData.Icon;
+            // itemQuantityText.text = ItemSlot.quantity > 1 ? ItemSlot.quantity.ToString() : "";
         }
 
         public void UpdateSelectedSlot(bool value)

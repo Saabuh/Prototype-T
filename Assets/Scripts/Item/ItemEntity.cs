@@ -27,26 +27,26 @@ namespace Prototype_S
         public void Pickup(PlayerController player)
         {
 
-            if (!canBePickedUp)
-            {
-                return;
-            }
-
-            ItemContainerDefinition itemContainerDefinition = player.PlayerInventory.Inventory;
-
-            if (itemContainerDefinition != null)
-            {
-                //create new itemSlot to add
-                ItemSlot itemSlotToAdd = new ItemSlot(ItemInstance, Quantity);
-                
-                //Add to inventory
-                itemContainerDefinition.ItemContainer.AddItem(itemSlotToAdd);
-                
-                Destroy(this.gameObject);
-                
-                // Log.Info("item was picked up and destroyed");
-
-            }
+            // if (!canBePickedUp)
+            // {
+            //     return;
+            // }
+            //
+            // ItemContainerDefinition itemContainerDefinition = player.PlayerInventory.Inventory;
+            //
+            // if (itemContainerDefinition != null)
+            // {
+            //     //create new itemSlot to add
+            //     ItemSlot itemSlotToAdd = new ItemSlot(ItemInstance, Quantity);
+            //     
+            //     //Add to inventory
+            //     itemContainerDefinition.ItemContainer.AddItem(itemSlotToAdd);
+            //     
+            //     Destroy(this.gameObject);
+            //     
+            //     // Log.Info("item was picked up and destroyed");
+            //
+            // }
             
             
             

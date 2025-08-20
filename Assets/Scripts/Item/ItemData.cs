@@ -7,9 +7,10 @@ namespace Prototype_S
     /// class representing an immutable data container for base item data
     /// </summary>
     public abstract class ItemData : ScriptableObject
-   {
-       [Header("Basic Info")] 
-       [SerializeField] private new string name = "New Item Name";
+    { 
+        [Header("Basic Info")] 
+       [SerializeField] private new string name = "New Item Name"; 
+       [SerializeField] private int itemID;
        [SerializeField] private Sprite icon = null;
        [SerializeField] private int sellPrice = 0;
        [SerializeField] private int quantity = 1;
@@ -23,6 +24,7 @@ namespace Prototype_S
        
        //getter properties
        public string Name => name;
+       public int ItemID => itemID;
        public Sprite Icon => icon;
        public int SellPrice => sellPrice;
        public int MaxStack => maxStack;

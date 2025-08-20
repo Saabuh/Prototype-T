@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: sword
   m_EditorClassIdentifier: 
   name: Sword
+  itemID: 2
   icon: {fileID: 5017735687825705595, guid: 3f29befd5942732d7ad3e72e992c14a8, type: 3}
   sellPrice: 0
   quantity: 1
   maxStack: 1
   rarity: Common
   description: A shoddy sword
+  placeable: 0
   itemAction: {fileID: 11400000, guid: c33703fa8b5a1985a955b1b92601ee27, type: 2}
   manaCost: 0
   cooldown: 1
-  damage: 50
+  baseDamage: 0
+  baseMiningDamage: 0
   projectilePrefab: {fileID: 0}

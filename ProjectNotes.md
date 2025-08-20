@@ -1,3 +1,23 @@
+# Netcode and networking notes
+
+General rule of thumb:
+if a gameObject exists on the network, it has a complete authoritative copy of the gameObject on its own invisible copy of the game i cant see. It is headless and is the 
+**Single Source of Truth**. Thus, it will try to run all logic on NetworkBehaviours, since the gameObject exists on the network, so you need guardrails.
+
+rough process of networkObjects:
+1. NetworkObject spawns on the server's instance of the game
+2. NetworkObject synchronizes across clients with a copy, assigns the owner
+3. Whenever an instance of a NetworkObject's method is ran (onNetworkSpawn), it runs for the server and all the clients' copies.
+4. whenever a serverRPC method is ran, it will run on the server's instance of the game instead of on the client.
+
+rough process of networkObjects and NetworkLists:
+1. same
+2. same
+3. same
+4. we initialize a networkList for each networkObject on only the server's instance of the game, because we want shared data to be server-authoritative and not modified by the client's method call.
+5. networkList is populated, change is detected, change is synchronized across all clients
+
+
 # Project Notes
 
 Entity scripts represent a single entity existing in the world space

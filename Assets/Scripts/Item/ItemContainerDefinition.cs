@@ -19,36 +19,36 @@ namespace Prototype_S
         public ItemContainer ItemContainer { get; private set; }
         public int ContainerSize => containerSize;
 
-        [ContextMenu("Test adding ItemSlot")]
-        public void TestAddItemSlot()
-        {
-
-            ItemInstance newItemInstance = new ItemInstance(testItemSlot.itemInstance.itemData);
-            ItemSlot slotToAdd = new ItemSlot(newItemInstance, testItemSlot.quantity);
-            
-            ItemContainer.AddItem(slotToAdd);
-        }
-
-        public void Initialize()
-        {
-            if (ItemContainer == null)
-            {
-                ItemContainer = new ItemContainer(containerSize);
-
-                if (onItemContainerUpdated != null)
-                {
-                    ItemContainer.OnItemsUpdated += onItemContainerUpdated.Raise;
-                }
-            }
-        }
-
-        public void OnDestroyCleanup()
-        {
-            if (ItemContainer != null && onItemContainerUpdated != null)
-            {
-                ItemContainer.OnItemsUpdated -= onItemContainerUpdated.Raise;
-            }
-        }
+        // [ContextMenu("Test adding ItemSlot")]
+        // public void TestAddItemSlot()
+        // {
+        //
+        //     ItemInstance newItemInstance = new ItemInstance(testItemSlot.itemInstance.itemData);
+        //     ItemSlot slotToAdd = new ItemSlot(newItemInstance, testItemSlot.quantity);
+        //     
+        //     ItemContainer.AddItem(slotToAdd);
+        // }
+        //
+        // public void Initialize()
+        // {
+        //     if (ItemContainer == null)
+        //     {
+        //         ItemContainer = new ItemContainer(containerSize);
+        //
+        //         if (onItemContainerUpdated != null)
+        //         {
+        //             ItemContainer.OnItemsUpdated += onItemContainerUpdated.Raise;
+        //         }
+        //     }
+        // }
+        //
+        // public void OnDestroyCleanup()
+        // {
+        //     if (ItemContainer != null && onItemContainerUpdated != null)
+        //     {
+        //         ItemContainer.OnItemsUpdated -= onItemContainerUpdated.Raise;
+        //     }
+        // }
 
     }
 }
