@@ -23,7 +23,8 @@ namespace Prototype_S
         public IntegerEvent onSelectedSlotChanged;
         
         //for testing
-        public ItemSlot testItemSlot = new ItemSlot(0, 1);
+        public ItemSlot testItemSlot1 = new ItemSlot(0, 1);
+        public ItemSlot testItemSlot2 = new ItemSlot(1, 5);
 
         private void Awake()
         {
@@ -107,13 +108,21 @@ namespace Prototype_S
             localInventory.AddItem(itemSlot);
 
         }
+
+        [ServerRpc]
+        public void SwapItemServerRpc(int itemSlotIndex1, int itemSlotIndex2)
+        {
+            Log.Info("attempting item swap for client " + OwnerClientId + ".");
+            localInventory.Swap(itemSlotIndex1, itemSlotIndex2);
+        }
         
 
         [ServerRpc]
         public void TestAddItemServerRpc()
         {
-            Log.Info("attempting to add an itemSlot containing item " + ItemDatabase.Instance.GetItemByID(testItemSlot.itemID).Name + "for clientID" + OwnerClientId);
-            localInventory.AddItem(testItemSlot);
+            Log.Info("attempting to add an itemSlot containing item " + ItemDatabase.Instance.GetItemByID(testItemSlot1.itemID).Name + "for clientID" + OwnerClientId);
+            localInventory.AddItem(testItemSlot1);
+            localInventory.AddItem(testItemSlot2);
         }
 
     }

@@ -140,39 +140,64 @@ namespace Prototype_S
         //     itemSlots[slotIndex] = new ItemSlot();
         //     OnItemsUpdated.Invoke();
         // }
-        
+
         public void Swap(int indexOne, int indexTwo)
         {
+            //pass by value
             ItemSlot firstSlot = itemSlots[indexOne];
             ItemSlot secondSlot = itemSlots[indexTwo];
-        
-            if (firstSlot == secondSlot) { return; }
-        
-            if (secondSlot.itemInstance != null)
+
+            // if (firstSlot == secondSlot)
+            // {
+            //     return;
+            // }
+
+            if (secondSlot.itemID != -1)
             {
-                if (firstSlot.itemInstance.itemData == secondSlot.itemInstance.itemData)
+                ItemData firstItem = ItemDatabase.Instance.GetItemByID(firstSlot.itemID);
+                ItemData secondItem = ItemDatabase.Instance.GetItemByID(secondSlot.itemID);
+
+                Log.Info(firstItem == secondItem);
+
+                if (firstItem == secondItem)
                 {
-                    int secondSlotRemainingSpace = secondSlot.itemInstance.itemData.MaxStack - secondSlot.quantity;
-        
+                    int secondSlotRemainingSpace = secondItem.MaxStack - secondSlot.quantity;
+
                     if (firstSlot.quantity <= secondSlotRemainingSpace)
                     {
-                        itemSlots[indexTwo].quantity += firstSlot.quantity;
-        
-                        itemSlots[indexOne] = new ItemSlot();
-        
-                        OnItemsUpdated.Invoke();
-        
+                        secondSlot.quantity += firstSlot.quantity;
+                        itemSlots[indexTwo] = secondSlot;
+                        itemSlots[indexOne] = new ItemSlot(-1, 0);
+                        
                         return;
                     }
                 }
+                
             }
+
+            itemSlots[indexOne] = secondSlot;
+            itemSlots[indexTwo] = firstSlot;
+            
+            // if (secondSlot.itemID != -1)
+            // {
+            //     if (firstSlot.itemInstance.itemData == secondSlot.itemInstance.itemData)
+            //     {
+            //         int secondSlotRemainingSpace = secondSlot.itemInstance.itemData.MaxStack - secondSlot.quantity;
+            //
+            //         if (firstSlot.quantity <= secondSlotRemainingSpace)
+            //         {
+            //             itemSlots[indexTwo].quantity += firstSlot.quantity;
+            //
+            //             itemSlots[indexOne] = new ItemSlot();
+            //
+            //             return;
+            //         }
+            //     }
+            // }
+            
+            
+        }
         
-        //     itemSlots[indexOne] = secondSlot;
-        //     itemSlots[indexTwo] = firstSlot;
-        //
-        //     OnItemsUpdated.Invoke();
-        // }
-        //
         // public bool HasItem(ItemData item)
         // {
         //     foreach (ItemSlot itemSlot in itemSlots)

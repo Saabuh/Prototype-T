@@ -80,16 +80,16 @@ namespace Prototype_S
             }
         }
 
-        public void OnDrop(IDraggableItem item)
+        public void OnDrop(IDraggableItem itemIcon)
         {
-            if (item == null)
+            if (itemIcon == null)
             {
                 return;
             }
 
-            if (item.ItemSlotUI)
+            if (itemIcon.ItemSlotUI)
             {
-                Log.Info("do nothing for now.");
+                playerInventory.SwapItemServerRpc(itemIcon.ItemSlotUI.SlotIndex, SlotIndex);
             }
 
             // if (item.ItemSlotUI)

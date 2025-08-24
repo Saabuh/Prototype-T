@@ -17,7 +17,7 @@ MonoBehaviour:
   icon: {fileID: 3443239106770634827, guid: 887f89221481bfb4b8f3986d24ed5db6, type: 3}
   sellPrice: 1
   quantity: 1
-  maxStack: 5
+  maxStack: 99
   rarity: Common
   description: A random stone
   placeable: 0
