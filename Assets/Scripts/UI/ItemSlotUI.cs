@@ -15,7 +15,7 @@ namespace Prototype_S
     {
         
         //fields
-        private ItemContainerDefinition itemContainerDefinition = null;
+        private PlayerInventory playerInventory;
         [SerializeField] private TextMeshProUGUI itemQuantityText = null;
         [SerializeField] private Image itemIconImage = null;
         [SerializeField] private Image itemSlotImage = null;
@@ -23,38 +23,40 @@ namespace Prototype_S
         
         //properties
         public int SlotIndex { get; private set; }
-        public ItemSlot ItemSlot => itemContainerDefinition.ItemContainer.GetSlotByIndex(SlotIndex);
-        public ItemContainer Inventory => itemContainerDefinition.ItemContainer;
+        // public ItemSlot ItemSlot => itemContainerDefinition.ItemContainer.GetSlotByIndex(SlotIndex);
+        public ItemSlot ItemSlot => playerInventory.GetInventoryItemSlot(SlotIndex);
+        // public ItemContainer Inventory => itemContainerDefinition.ItemContainer;
         public bool IsSelected => isSelected;
 
-        public void Initialize(ItemContainerDefinition itemContainer, int slotIndex)
+        public void Initialize(PlayerInventory inventory, int slotIndex)
         {
-            itemContainerDefinition = itemContainer;
+            this.playerInventory = inventory;
             SlotIndex = slotIndex;
         }
 
         public void UpdateSlotUI()
         {
-            //
-            // if (isSelected)
-            // {
-            //     itemSlotImage.color = new Color(1f, 0.5f, 0f, 0.5f);
-            // }
-            // else
-            // {
-            //     itemSlotImage.color = new Color(0f, 0f, 0f, 0.8f);
-            // }
-            //
-            // if (ItemSlot.itemInstance == null)
-            // {
-            //     EnableSlotUI(false);
-            //     return;
-            // }
-            //
-            // EnableSlotUI(true);
-            //
+            
+            if (isSelected)
+            {
+                itemSlotImage.color = new Color(1f, 0.5f, 0f, 0.5f);
+            }
+            else
+            {
+                itemSlotImage.color = new Color(0f, 0f, 0f, 0.8f);
+            }
+            
+            if (ItemSlot.itemID == -1)
+            {
+                EnableSlotUI(false);
+                return;
+            }
+            
+            EnableSlotUI(true);
+            
             // itemIconImage.sprite = ItemSlot.itemInstance.itemData.Icon;
-            // itemQuantityText.text = ItemSlot.quantity > 1 ? ItemSlot.quantity.ToString() : "";
+            itemIconImage.sprite = ItemDatabase.Instance.GetItemByID(ItemSlot.itemID).Icon;
+            itemQuantityText.text = ItemSlot.quantity > 1 ? ItemSlot.quantity.ToString() : "";
         }
 
         public void UpdateSelectedSlot(bool value)
@@ -72,7 +74,7 @@ namespace Prototype_S
         private void OnEnable()
         {
             //make sure itemContainer is defined first
-            if (itemContainerDefinition != null)
+            if (playerInventory != null)
             {
                 UpdateSlotUI();
             }
@@ -87,8 +89,13 @@ namespace Prototype_S
 
             if (item.ItemSlotUI)
             {
-                itemContainerDefinition.ItemContainer.Swap(item.ItemSlotUI.SlotIndex, SlotIndex);
+                Log.Info("do nothing for now.");
             }
+
+            // if (item.ItemSlotUI)
+            // {
+            //     itemContainerDefinition.ItemContainer.Swap(item.ItemSlotUI.SlotIndex, SlotIndex);
+            // }
             
         }
     }

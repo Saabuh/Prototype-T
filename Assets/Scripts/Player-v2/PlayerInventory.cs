@@ -6,26 +6,28 @@ namespace Prototype_S
 {
 
     /// <summary>
-    /// Responsible for PlayerInventory Behaviour/Logic
+    /// Inventory wrapper responsible for PlayerInventory Behaviour/Logic
     /// </summary>
 
     public class PlayerInventory : NetworkBehaviour
     {
         //fields
-        public NetworkList<ItemSlot> inventorySlots;
+        private NetworkList<ItemSlot> inventory;
         private ItemContainer localInventory;
         public int inventorySize = 40;
+        public int selectedSlotIndex;
         
         //events
-        [SerializeField] private VoidEvent onInventoryItemsUpdated;
+        public event Action OnInventoryItemsUpdated;
+        public event Action OnNetworkReady;
+        public IntegerEvent onSelectedSlotChanged;
         
         //for testing
         public ItemSlot testItemSlot = new ItemSlot(0, 1);
-        
 
         private void Awake()
         {
-            inventorySlots = new NetworkList<ItemSlot>();
+            inventory = new NetworkList<ItemSlot>();
         }
 
         void Update()
@@ -43,24 +45,60 @@ namespace Prototype_S
 
         public override void OnNetworkSpawn()
         {
-            //Subscribe to the OnListChanged event on all clients
-            inventorySlots.OnListChanged += OnInventoryItemsUpdated;
+            inventory.OnListChanged += OnInventoryUpdated;
             
-            //only allow the server to populate the networkList and access to inventory logic
+            //only allow the server to write to the networkList, but provide access to inventory read logic on all clients
             if (IsServer)
             {
-                localInventory = new ItemContainer(inventorySlots, inventorySize);
+                for (int i = 0; i < inventorySize; i++)
+                {
+                    inventory.Add(new ItemSlot(-1, 0));
+                }
             }
-        }
 
-        public void OnInventoryItemsUpdated(NetworkListEvent<ItemSlot> changeEvent)
-        {
-            Log.Info("testing event invoke on client" + OwnerClientId);
-            Log.Info(changeEvent.ToString());
+            //provide the reference to the inventory logic for all clients
+            localInventory = new ItemContainer(inventory, inventorySize);
             
-            // onInventoryItemsUpdated.Raise();
+            if (IsOwner)
+            {
+                OnNetworkReady?.Invoke();
+            }
+            
         }
 
+        public void OnInventoryUpdated(NetworkListEvent<ItemSlot> changeEvent)
+        {
+
+            Log.Info("Inventory change detected for " + OwnerClientId + " for networkObject " + NetworkObjectId);
+
+            //only invoke the event if the client owns this networkObject
+            //change this to c# events instead 
+            if (!IsOwner)
+            {
+                Log.Info("Not the owner of networkObject " + NetworkObjectId + " detecting a change");
+                return;
+            }
+            
+            OnInventoryItemsUpdated?.Invoke();
+        }
+        public void SelectSlotIndex(int index)
+        {
+            selectedSlotIndex = index;
+            Log.Info("slot " + selectedSlotIndex + " selected");
+
+            if (!IsOwner)
+            {
+                Log.Info("Not the owner of networkObject " + NetworkObjectId + " detecting a change");
+                return;
+            }
+            
+            onSelectedSlotChanged.Raise(selectedSlotIndex);
+        }
+
+        public ItemSlot GetInventoryItemSlot(int slotIndex)
+        {
+            return localInventory.GetSlotByIndex(slotIndex);
+        }
 
         [ServerRpc]
         public void AddItemServerRpc(ItemSlot itemSlot)
@@ -69,6 +107,7 @@ namespace Prototype_S
             localInventory.AddItem(itemSlot);
 
         }
+        
 
         [ServerRpc]
         public void TestAddItemServerRpc()

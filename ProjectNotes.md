@@ -1,8 +1,11 @@
 # Netcode and networking notes
 
-General rule of thumb:
+General rules of thumb:
 if a gameObject exists on the network, it has a complete authoritative copy of the gameObject on its own invisible copy of the game i cant see. It is headless and is the 
 **Single Source of Truth**. Thus, it will try to run all logic on NetworkBehaviours, since the gameObject exists on the network, so you need guardrails.
+
+Scriptable Object events, vs c# events,
+use scriptable Object events for decoupled systems, c# events for tightly coupled systems(this is fine)
 
 rough process of networkObjects:
 1. NetworkObject spawns on the server's instance of the game
@@ -16,6 +19,10 @@ rough process of networkObjects and NetworkLists:
 3. same
 4. we initialize a networkList for each networkObject on only the server's instance of the game, because we want shared data to be server-authoritative and not modified by the client's method call.
 5. networkList is populated, change is detected, change is synchronized across all clients
+
+identify player specific vs world specific ui.
+
+
 
 
 # Project Notes

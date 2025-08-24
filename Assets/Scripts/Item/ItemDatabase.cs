@@ -26,6 +26,7 @@ namespace Prototype_S
             {
                 itemDictionary[itemAsset.ItemID] = itemAsset;
             }
+            
         }
 
         public ItemData GetItemByID(int itemID)
