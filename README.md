@@ -1,3 +1,3 @@
 Protoype S
 
-Initial prototype for a ROTMG-like boss simulater
+Initial prototype for a ROTMG-like boss simulator
