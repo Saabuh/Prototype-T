@@ -12,11 +12,13 @@ so does the input reader temporarily.
 
 # log
 ## 14-08-2025
-- [ ] refactor world generation and world display for multiplayer
 - [ ] refactor inventory system for multiplayer
-- [ ] work on client side prediction and reconciliation to solve delay/lag issues for movement, animations, etc.
-- [ ] look into encapsulating ui in player prefab vs centralized ui which links the player via event calls (went with the former)
+- [ ] fix item dropping and inventory remove logic for multiplayer
+- [ ] re-add itemInstances to represent item entities existing in the game instead of itemData which is a scriptableObject (scriptableObjects should be immutable data containers that dont exist in the world. used for readonly)
+- [ ] refactor world generation and world display for multiplayer
+- [x] look into encapsulating ui in player prefab vs centralized ui which links the player via event calls (went with the former)
     - its a decision about what needs to be tightly coupled vs what needs to be decoupled
+- [ ] work on client side prediction and reconciliation to solve delay/lag issues for movement, animations, etc.
 - [ ] should everything player-specific in a multiplayer game be encapsulated in a networkObject? (input reading too?)
 - [ ] swap scriptableObject events out in the playerPrefab for c# events if they are tightly coupled components, easier to understand/debug and is more consistent with the rest of the code
     - example, PlayerInventory.OnInventoryUpdated or SelectSlotIndex. Both need to change for owner since the event is global to a specific client, so all the clients' networkObjects hear it

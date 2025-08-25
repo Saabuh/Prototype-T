@@ -94,14 +94,16 @@ namespace Prototype_S
             Hide();
         }
 
-        public void PopulateTooltipInfo(ItemSlot item)
+        public void PopulateTooltipInfo(ItemSlot itemSlot)
         {
-            // StringBuilder builder = new StringBuilder();
-            //
-            // builder.Append("<size=24>").Append(item.itemInstance.itemData.name).Append("</size>\n");
-            // builder.Append(item.itemInstance.itemData.GetItemDisplayText());
-            //
-            // tooltipText.text = builder.ToString();
+            StringBuilder builder = new StringBuilder();
+
+            ItemData itemData = ItemDatabase.Instance.GetItemByID(itemSlot.itemID);
+            
+            builder.Append("<size=24>").Append(itemData.name).Append("</size>\n");
+            builder.Append(itemData.GetItemDisplayText());
+            
+            tooltipText.text = builder.ToString();
         }
         
     }
