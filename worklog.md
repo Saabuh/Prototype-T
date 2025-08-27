@@ -2,22 +2,23 @@
 
 
 ## Bugs
-- [ ] dropping items between inventory slots causes multiple raycasts hits(?)
 - [ ] adding inventory items doesnt handle full inventories properly (pass by reference as a solution? method overload for 2 versionf of AddItem if we care/dont care about remainder)
-- [ ] considering moving the inputReader script onto a seperate InputReader object. reasoning is that we are attaching the UIManager to an instance of the inputReader component on the player. If the player dies (gameObject deleted),
 so does the input reader temporarily.
 - [x] [dragging an item and then closing the ui bugs out, item freezes on current mouse position on next inventory toggle](https://github.com/Saabuh/Prototype-T/issues/1)
 - [x] [Visual duplicate item bug with inventory toggling](https://github.com/Saabuh/Prototype-T/issues/2)
 - [ ] if playerspeed is too high, they can run through walls
+- [ ] when dropping an item out of the inventory, the item icon flashes for a split second again in the itemslot before disappearing. Most likely having smthn to do with the update of visuals before the server can register
 
 # log
+## 27-08-2025
+- [x] fix item dropping and inventory remove logic for multiplayer
+- [x] look into encapsulating ui in player prefab vs centralized ui which links the player via event calls (went with the former)
+
 ## 14-08-2025
 - [ ] refactor inventory system for multiplayer
-- [ ] fix item dropping and inventory remove logic for multiplayer
 - [ ] re-add itemInstances to represent item entities existing in the game instead of itemData which is a scriptableObject (scriptableObjects should be immutable data containers that dont exist in the world. used for readonly)
 - [ ] refactor world generation and world display for multiplayer
 - [ ] resize console
-- [x] look into encapsulating ui in player prefab vs centralized ui which links the player via event calls (went with the former)
     - its a decision about what needs to be tightly coupled vs what needs to be decoupled
 - [ ] work on client side prediction and reconciliation to solve delay/lag issues for movement, animations, etc.
 - [ ] move ItemDatabase from a monobehaviour to a different system (static class, scriptableObject, etc.)

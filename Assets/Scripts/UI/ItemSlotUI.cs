@@ -24,9 +24,7 @@ namespace Prototype_S
         //getter properties
         public PlayerInventory PlayerInventory => playerInventory;
         public int SlotIndex { get; private set; }
-        // public ItemSlot ItemSlot => itemContainerDefinition.ItemContainer.GetSlotByIndex(SlotIndex);
         public ItemSlot ItemSlot => playerInventory.GetInventoryItemSlot(SlotIndex);
-        // public ItemContainer Inventory => itemContainerDefinition.ItemContainer;
         public bool IsSelected => isSelected;
 
         public void Initialize(PlayerInventory inventory, int slotIndex)
@@ -55,7 +53,6 @@ namespace Prototype_S
             
             EnableSlotUI(true);
             
-            // itemIconImage.sprite = ItemSlot.itemInstance.itemData.Icon;
             itemIconImage.sprite = ItemDatabase.Instance.GetItemByID(ItemSlot.itemID).Icon;
             itemQuantityText.text = ItemSlot.quantity > 1 ? ItemSlot.quantity.ToString() : "";
         }
@@ -65,7 +62,7 @@ namespace Prototype_S
             isSelected = value;
         }
 
-        private void EnableSlotUI(bool enable)
+        public void EnableSlotUI(bool enable)
         {
             itemIconImage.enabled = enable;
             itemQuantityText.enabled = enable;

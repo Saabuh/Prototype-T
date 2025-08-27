@@ -65,19 +65,16 @@ namespace Prototype_S.UI
             transform.SetParent(originalParent);
             transform.localPosition = Vector3.zero;
             canvasGroup.blocksRaycasts = true;
-
+            
             if (!targetFound)
             {
+                //apply some client side prediction to immediately clear the slot visually
+                itemSlotUI.EnableSlotUI(false);
                 
-                Log.Info("Target not found");
+                //actally clear it
                 ItemSlotUI.PlayerInventory.DropItemServerRpc(itemSlotUI.SlotIndex, PlayerController.LocalPlayer.transform.position);
-                
-                // ItemSpawner.SpawnItem(PlayerController.LocalPlayer.transform.position,
-                //     itemSlotUI.ItemSlot.itemInstance, itemSlotUI.ItemSlot.quantity);
-                //
-                // // Reset item slot after spawning creating item entity
-                // itemSlotUI.Inventory.RemoveAt(itemSlotUI.SlotIndex);
             } 
+            
         }
 
         public void OnPointerEnter(PointerEventData eventData)
