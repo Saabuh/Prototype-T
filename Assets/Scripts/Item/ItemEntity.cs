@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Prototype_S
@@ -6,22 +8,39 @@ namespace Prototype_S
     /**
      * Represents an item existing in the world space
      */
-    public class ItemEntity : MonoBehaviour, IPickupable
+    public class ItemEntity : NetworkBehaviour, IPickupable
     {
-        public ItemInstance ItemInstance { get; private set; }
-        public int Quantity { get; private set; }
+        public NetworkVariable<int> itemID = new NetworkVariable<int>();
+        public NetworkVariable<int> quantity = new NetworkVariable<int>();
+        public NetworkVariable<int> pickupDelay = new NetworkVariable<int>();
         private float pickUpDelay = 0f;
         private bool canBePickedUp = false;
 
-        private void Start()
+        public override void OnNetworkSpawn()
         {
+            base.OnNetworkSpawn();
+            
+            //build the itemEntity locally on the client
+            GetComponent<SpriteRenderer>().sprite = ItemDatabase.Instance.GetItemByID(itemID.Value).Icon;
+            
             StartCoroutine(EnablePickupAfterDelay());
         }
-        public void Initialize(ItemInstance itemInstance, int quantity, float pickupDelay) {
+
+        /// <summary>
+        /// Initializes the values of the networkVariables to be syncrhonzied across the network
+        /// </summary>
+        /// <param name="itemData"></param>
+        /// <param name="quantity"></param>
+        /// <param name="pickupDelay"></param>
+        public void Initialize(int itemID, int quantity, int pickupDelay) {
             
-            this.ItemInstance = itemInstance;
-            this.Quantity = quantity;
-            this.pickUpDelay = pickupDelay;
+            this.itemID.Value = itemID;
+            this.quantity.Value = quantity;
+            this.pickupDelay.Value = pickupDelay;
+        }
+
+        public void DrawVisuals()
+        {
         }
 
         public void Pickup(PlayerController player)

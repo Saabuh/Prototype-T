@@ -21,7 +21,8 @@ namespace Prototype_S
         [SerializeField] private Image itemSlotImage = null;
         private bool isSelected = false;
         
-        //properties
+        //getter properties
+        public PlayerInventory PlayerInventory => playerInventory;
         public int SlotIndex { get; private set; }
         // public ItemSlot ItemSlot => itemContainerDefinition.ItemContainer.GetSlotByIndex(SlotIndex);
         public ItemSlot ItemSlot => playerInventory.GetInventoryItemSlot(SlotIndex);

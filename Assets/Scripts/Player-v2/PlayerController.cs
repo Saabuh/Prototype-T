@@ -10,8 +10,8 @@ namespace Prototype_S
      */
     public class PlayerController : NetworkBehaviour
     {
-        //static instance 
-        public static PlayerController LocalInstance { get; private set; }
+        //static instance of the local client's player
+        public static PlayerController LocalPlayer { get; private set; }
         
         //events
         public static event Action<PlayerController> OnLocalPlayerConnected;
@@ -38,7 +38,7 @@ namespace Prototype_S
                 
                 Log.Info("Player Connected.");
                 
-                LocalInstance = this;
+                LocalPlayer = this;
                 
                 //set camera follow
                 CameraController cameraController = Camera.main.GetComponent<CameraController>();

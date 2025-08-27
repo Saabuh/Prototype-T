@@ -68,7 +68,11 @@ namespace Prototype_S.UI
 
             if (!targetFound)
             {
-                // ItemSpawner.SpawnItem(PlayerController.LocalInstance.transform.position,
+                
+                Log.Info("Target not found");
+                ItemSlotUI.PlayerInventory.DropItemServerRpc(itemSlotUI.SlotIndex, PlayerController.LocalPlayer.transform.position);
+                
+                // ItemSpawner.SpawnItem(PlayerController.LocalPlayer.transform.position,
                 //     itemSlotUI.ItemSlot.itemInstance, itemSlotUI.ItemSlot.quantity);
                 //
                 // // Reset item slot after spawning creating item entity

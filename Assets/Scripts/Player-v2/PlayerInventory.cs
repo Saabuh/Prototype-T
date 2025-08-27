@@ -82,6 +82,7 @@ namespace Prototype_S
             
             OnInventoryItemsUpdated?.Invoke();
         }
+        
         public void SelectSlotIndex(int index)
         {
             selectedSlotIndex = index;
@@ -107,6 +108,14 @@ namespace Prototype_S
             Log.Info("attempting adding an item for client " + OwnerClientId + ".");
             localInventory.AddItem(itemSlot);
 
+        }
+
+        [ServerRpc]
+        public void DropItemServerRpc(int itemIndex, Vector3 playerPosition)
+        {
+            Log.Info("Attempting to drop an item for client " + OwnerClientId + ".");
+            ItemSlot itemSlot = localInventory.RemoveAt(itemIndex);
+            ItemSpawner.SpawnItem(playerPosition, itemSlot.itemID, itemSlot.quantity);
         }
 
         [ServerRpc]

@@ -115,15 +115,22 @@ namespace Prototype_S
             throw new System.NotImplementedException();
         }
 
-        public void RemoveAt(int slotIndex)
+        /// <summary>
+        /// Removes an item at the given slotIndex
+        /// </summary>
+        /// <param name="slotIndex">index of the slot to remove from</param>
+        /// <returns>ItemID of the removed item</returns>
+        public ItemSlot RemoveAt(int slotIndex)
         {
-            itemSlots[slotIndex] = new ItemSlot(-1, 0);
-        }
+            ItemSlot itemSlot = itemSlots[slotIndex];
+            //check if there's actually an item existing at this index
+            if (itemSlot.itemID != -1)
+            {
+                itemSlots[slotIndex] = new ItemSlot(-1, 0);
+            }
 
-        // public void Swap(int indexOne, int indexTwo)
-        // {
-        //     throw new NotImplementedException();
-        // }
+            return itemSlot;
+        }
 
         public bool HasItem(ItemData item)
         {

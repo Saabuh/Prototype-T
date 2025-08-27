@@ -22,8 +22,13 @@ rough process of networkObjects and NetworkLists:
 
 identify player specific vs world specific ui.
 
+# Properties of NetworkObjects
 
+Calling NetworkObject.Spawn() really only does two things:
+1. it synchronizes the networkObject and ONLY it's network variables across all clients by telling them to create this object on their instance of the game
+2. synchronizes the transform.
 
+Everything else has to be done on the client-side. this includes audio, sprites, logic, etc.
 
 # Project Notes
 

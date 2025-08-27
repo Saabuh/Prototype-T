@@ -7,7 +7,7 @@ namespace Prototype_S
     {
        ItemSlot AddItem(ItemSlot itemSlot);
        void RemoveItem(ItemSlot itemSlot);
-       void RemoveAt(int slotIndex);
+       ItemSlot RemoveAt(int slotIndex);
        void Swap(int indexOne, int indexTwo);
        bool HasItem(ItemData item);
        int GetTotalQuantity(ItemData item);
